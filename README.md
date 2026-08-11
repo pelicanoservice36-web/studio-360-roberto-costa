@@ -7,18 +7,23 @@ Site institucional estático (HTML/CSS puro, sem build) para o Studio 360 do Rob
 - `index.html` — página principal (hero, método, serviços, sobre, depoimentos, studio, FAQ)
 - `diagnostico.html` — página de diagnóstico
 - `plano.html` — página de plano
-- `assets/roberto.jpg` — foto do Roberto usada no hero e na seção "Sobre"
+- `assets/roberto-recortado.png` — foto do Roberto (fundo removido, recortada e com cor de camisa ajustada) usada no hero e na seção "Sobre"
 
 ## Deploy
 
-Publicado no Netlify: https://studio360-roberto-costa-demo.netlify.app
-Site ID: `93165992-5b1c-460a-9f6d-775849378f48`
+Publicado no **Cloudflare Pages**: https://studio-360-roberto-costa.pelicanoservice36.workers.dev/
 
-Para reimplantar, zipe o conteúdo desta pasta (exceto arquivos ocultos) e envie via Netlify CLI/MCP ou arraste no painel do Netlify.
+O site é acionado automaticamente a cada push no branch `main` do repositório GitHub. Não é necessário ação manual para redeploy.
+
+**Repositório GitHub:** https://github.com/pelicanoservice36-web/studio-360-roberto-costa
 
 ## Pendências conhecidas
 
-- Fotos dos 3 depoimentos (`imagens/aluno-1.jpg`, `aluno-2.jpg`, `aluno-3.jpg`) e `og:image` ainda não têm imagem real.
+- Fotos dos 3 depoimentos reais:
+  - `imagens/aluno-1.jpg` — Mariana Fonseca
+  - `imagens/aluno-2.jpg` — Gabriela Crivellente
+  - `imagens/aluno-3.jpg` — Rodrigo Aruake
+- `og:image` ainda não tem imagem de preview (Open Graph).
 - `<meta name="robots" content="noindex, nofollow">` está ativo de propósito (projeto de demonstração, sem indexação no Google).
 - **Endereço divergente:** o site do cliente (360robertocosta.com) informa "Av. Mascote, 486 sala 24 — Vila Mascote"; o Google Maps e esta landing usam "R. Madre Emilie de Villeneuve, 509B — Vila Santa Catarina". Confirmar com o Roberto qual está ativo e corrigir a ficha do Google Meu Negócio.
 - **Horários divergentes:** o site do cliente diz "seg a sáb, 06:00–22:00"; o Google Maps registra aberturas às 4h40/5h30. Confirmar.
