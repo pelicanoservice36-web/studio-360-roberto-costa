@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex, nofollow">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Diagnóstico Digital — Studio 360° Roberto Costa</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Barlow:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0B1220; --ink2:#16202F; --ink3:#243349;
+  --orange:#EA580C; --orange-hi:#F97316; --orange-d:#C2410C;
+  --green:#10B981; --red:#E11D48; --slate:#64748B;
+  --paper:#F5F7FA; --white:#fff; --gray:#5B6779; --gray-l:#9AA6B6; --line:#DDE3EA;
+  --H:"Barlow Condensed", Arial, sans-serif;
+  --B:"Barlow", system-ui, -apple-system, sans-serif;
+  --bar:62px;
+}
+*,*::before,*::after{box-sizing:border-box}
+html,body{margin:0;height:100%;background:#070C14;font-family:var(--B)}
+body{overflow:hidden;-webkit-text-size-adjust:100%}
+
+/* ---------- palco fluido ---------- */
+#stage{position:fixed;top:0;left:0;right:0;bottom:var(--bar);display:grid;place-items:center;padding:10px}
+#deck{position:relative;width:100%;max-width:1280px;height:100%;max-height:760px}
+.slide{
+  position:absolute;inset:0;display:none;flex-direction:column;
+  background:var(--paper);color:var(--ink);border-radius:10px;
+  padding:clamp(20px,3.2vw,52px);
+  overflow-y:auto;-webkit-overflow-scrolling:touch;
+  font-size:clamp(12.5px,1.15vw,18px);
+}
+.slide.on{display:flex;animation:in .25s ease}
+@keyframes in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.slide.dark{background:var(--ink);color:#fff}
+
+/* ---------- tipografia (tudo em em, escala com o slide) ---------- */
+.eyebrow{font-family:var(--H);font-weight:700;letter-spacing:.2em;font-size:.8em;
+  text-transform:uppercase;color:var(--orange);margin:0 0 .7em}
+.dark .eyebrow{color:var(--orange-hi)}
+h1{font-family:var(--H);font-weight:700;font-size:3.9em;line-height:.98;margin:0;
+  text-transform:uppercase}
+h2{font-family:var(--H);font-weight:700;font-size:2.85em;line-height:1.03;margin:0 0 .55em}
+h3{font-family:var(--H);font-weight:700;font-size:1.4em;line-height:1.15;margin:0 0 .35em}
+p{margin:0;font-size:1em;line-height:1.5;color:var(--gray)}
+.dark p{color:var(--gray-l)}
+.sm{font-size:.88em}
+.sub{font-size:1.15em;margin:-.4em 0 1.2em}
+.kicker{font-family:var(--H);font-weight:700;font-size:1.4em;line-height:1.2;
+  color:var(--ink);margin-top:auto;padding-top:.7em}
+.dark .kicker{color:#fff}
+ul{margin:0;padding:0;list-style:none;display:grid;gap:.55em}
+li{display:flex;gap:.6em;font-size:.95em;line-height:1.42;color:var(--gray)}
+li::before{content:"";width:.35em;height:.35em;border-radius:50%;background:var(--orange);
+  flex:none;margin-top:.55em}
+.dark li{color:var(--gray-l)}
+.hl-line{color:var(--orange);font-weight:600;font-style:italic;margin-top:.9em;font-size:.95em}
+
+/* ---------- componentes ---------- */
+.head{position:relative}
+.badge{position:absolute;top:0;right:0;padding:.35em .9em;border-radius:99px;
+  font-family:var(--H);font-weight:700;font-size:.78em;letter-spacing:.14em;
+  text-transform:uppercase;color:#fff}
+.body{flex:1;display:flex;flex-direction:column;gap:clamp(14px,1.8vw,24px);min-height:0}
+.card{background:var(--white);border:1px solid var(--line);border-radius:.8em;
+  padding:clamp(14px,1.6vw,26px)}
+.dark .card{background:var(--ink2);border-color:var(--ink3)}
+.card.bad{border-color:#F5C2C7}
+.card.good{border-color:var(--green)}
+.card.hl{border-color:var(--orange)}
+.label{font-family:var(--H);font-weight:700;font-size:.85em;letter-spacing:.16em;
+  text-transform:uppercase;margin:0 0 .8em}
+.grid{display:grid;gap:clamp(12px,1.5vw,22px)}
+.g2{grid-template-columns:1fr 1fr}
+.g3{grid-template-columns:repeat(3,1fr)}
+.g4{grid-template-columns:repeat(4,1fr)}
+.stat b{display:block;font-family:var(--H);font-weight:700;font-size:4.2em;line-height:.88;
+  color:var(--orange-hi);margin-bottom:.15em}
+.stat strong{display:block;font-size:1.05em;color:#fff;margin-bottom:.2em}
+.num{width:2em;height:2em;border-radius:50%;display:grid;place-items:center;
+  font-family:var(--H);font-weight:700;font-size:1.05em;color:#fff;margin-bottom:.7em}
+
+/* lista de achados */
+.rows{display:grid;gap:.5em}
+.row{display:grid;grid-template-columns:2.4em 1fr auto;align-items:center;gap:.8em;
+  background:#fff;border:1px solid var(--line);border-radius:.7em;padding:.7em 1.1em}
+.row .n{font-family:var(--H);font-weight:700;font-size:1.1em;color:#B4BECC}
+.row .t{font-size:1.02em;color:var(--ink);line-height:1.3}
+.pill{display:inline-block;padding:.25em .8em;border-radius:99px;color:#fff;white-space:nowrap;
+  font-family:var(--H);font-weight:700;font-size:.78em;letter-spacing:.12em;text-transform:uppercase}
+
+/* antes e depois */
+.cmp{display:grid;grid-template-columns:9em 1fr 1fr;gap:.7em;align-items:center;margin-bottom:.55em}
+.cmp .k{font-family:var(--H);font-weight:700;font-size:1.25em}
+.cmp .v{border:1px solid var(--line);background:#fff;border-radius:.6em;
+  padding:.7em .9em;font-size:.92em;color:var(--gray);line-height:1.3}
+.cmp .v.new{border-color:var(--green);color:var(--ink)}
+.cmp .hdr{font-family:var(--H);font-weight:700;font-size:.85em;letter-spacing:.16em;text-transform:uppercase}
+
+.tag{display:inline-block;padding:.3em .9em;border-radius:99px;color:#fff;
+  font-family:var(--H);font-weight:700;font-size:.78em;letter-spacing:.14em;
+  text-transform:uppercase;margin-bottom:.7em}
+
+/* capa e encerramento */
+.cover{flex:1;display:flex;align-items:center;gap:clamp(20px,4vw,60px)}
+.cover .txt{flex:1;min-width:0}
+.ring{position:relative;flex:none;width:clamp(140px,22vw,300px);aspect-ratio:1;
+  border:3px solid var(--orange);border-radius:50%;display:grid;place-items:center}
+.ring::before{content:"";position:absolute;inset:14%;border:2px solid var(--ink3);border-radius:50%}
+.ring span{font-family:var(--H);font-weight:700;font-size:clamp(30px,4.6vw,58px);color:#fff}
+.foot{margin-top:auto;padding-top:1.2em}
+.foot .dash{width:2.6em;height:3px;background:var(--orange);margin-bottom:.8em}
+.cta{display:flex;align-items:center;gap:1.2em;flex-wrap:wrap;margin-top:auto;padding-top:1.2em}
+.cta b{background:var(--orange);color:#fff;padding:.75em 1.8em;border-radius:99px;
+  font-family:var(--H);font-weight:700;letter-spacing:.14em;font-size:1em;text-transform:uppercase}
+
+/* ---------- telas estreitas ---------- */
+@media (max-width:900px){
+  .g3,.g4{grid-template-columns:1fr 1fr}
+}
+@media (max-width:640px){
+  .slide{border-radius:8px}
+  .g2,.g3,.g4{grid-template-columns:1fr}
+  .cover{flex-direction:column;align-items:flex-start;justify-content:center}
+  .ring{display:none}
+  .cmp{grid-template-columns:1fr;gap:.35em;margin-bottom:1em}
+  .cmp .k{font-size:1.35em}
+  .cmp .hdr{display:none}
+  .cmp .v::before{content:"Hoje: ";font-weight:700;color:var(--slate)}
+  .cmp .v.new::before{content:"Depois: ";color:var(--green)}
+  .row{grid-template-columns:2.2em 1fr;row-gap:.4em}
+  .row .pill{grid-column:2}
+  .badge{position:static;display:inline-block;margin-bottom:.8em}
+  h1{font-size:3.1em}
+  h2{font-size:2.3em}
+}
+
+/* ---------- navegação ---------- */
+#bar{position:fixed;left:0;right:0;bottom:0;height:var(--bar);display:flex;align-items:center;
+  justify-content:center;gap:16px;background:rgba(7,12,20,.94);z-index:30;
+  padding-bottom:env(safe-area-inset-bottom)}
+#bar button{width:44px;height:44px;border-radius:50%;border:1px solid #2A3648;
+  background:transparent;color:#D7DEE8;font-size:18px;cursor:pointer;transition:.18s}
+#bar button:hover:not(:disabled){border-color:var(--orange);color:var(--orange-hi)}
+#bar button:disabled{opacity:.3}
+#count{font-family:var(--H);font-weight:700;letter-spacing:.12em;font-size:15px;
+  color:#D7DEE8;min-width:62px;text-align:center}
+#help{position:fixed;top:10px;right:14px;z-index:30;color:#4E5A6B;font-size:12px}
+#notes{position:fixed;left:0;right:0;bottom:var(--bar);max-height:38vh;overflow:auto;
+  background:#0F1723;border-top:1px solid #22303F;color:#A9B6C6;
+  padding:16px 22px;font-size:14px;line-height:1.55;z-index:29;display:none}
+#notes.on{display:block}
+#notes b{color:var(--orange-hi);font-family:var(--H);letter-spacing:.14em;
+  text-transform:uppercase;font-size:12px;display:block;margin-bottom:5px}
+.note{display:none}
+:focus-visible{outline:2px solid var(--orange-hi);outline-offset:3px}
+
+@media (max-width:640px){#help{display:none}}
+
+@media print{
+  body{overflow:visible}
+  #bar,#help,#notes{display:none!important}
+  #stage{position:static;display:block;padding:0}
+  #deck{max-width:none;max-height:none;height:auto}
+  .slide{display:flex!important;position:relative;inset:auto;border-radius:0;
+    animation:none;page-break-after:always;height:100vh;overflow:visible;font-size:14px}
+}
+</style>
+</head>
+<body>
+
+<div id="stage"><div id="deck">
+
+<!-- 1 — CAPA -->
+<section class="slide dark">
+  <div class="cover">
+    <div class="txt">
+      <p class="eyebrow">Diagnóstico de presença digital</p>
+      <h1>Studio 360°<br>Roberto Costa</h1>
+      <p class="sub" style="margin-top:1em">O que sua presença online entrega hoje — e o que está deixando na mesa.</p>
+    </div>
+    <div class="ring"><span>360°</span></div>
+  </div>
+  <div class="foot">
+    <div class="dash"></div>
+    <p class="sm">Preparado por [Seu nome] · [seu contato] &nbsp;·&nbsp; Agosto de 2026</p>
+  </div>
+  <div class="note">Abertura. Diga que você fez essa análise antes de falar de preço, porque queria entender o negócio dele primeiro. Isso separa você de todos os outros orçamentos do GetNinjas.</div>
+</section>
+
+<!-- 2 — O ATIVO -->
+<section class="slide dark">
+  <div class="head">
+    <p class="eyebrow">Ponto de partida</p>
+    <h2>Você já tem a parte mais difícil</h2>
+  </div>
+  <p class="sub">Reputação não se compra e não se acelera. A sua está impecável.</p>
+  <div class="body">
+    <div class="grid g3">
+      <div class="card stat"><b>5,0</b><strong>nota no Google Maps</strong><p class="sm">sem uma única avaliação negativa</p></div>
+      <div class="card stat"><b>63</b><strong>avaliações de alunos</strong><p class="sm">volume alto para um studio boutique</p></div>
+      <div class="card stat"><b>14</b><strong>anos com o mesmo aluno</strong><p class="sm">retenção que academia grande não tem</p></div>
+    </div>
+    <p class="kicker">O problema não é reputação. É o caminho entre quem procura você e o seu WhatsApp.</p>
+  </div>
+  <div class="note">Comece elogiando com dado, não com bajulação. Ele precisa sentir que você olhou de verdade. A última frase é a ponte para o resto da apresentação.</div>
+</section>
+
+<!-- 3 — FUNIL -->
+<section class="slide">
+  <div class="head">
+    <p class="eyebrow">O caminho do cliente</p>
+    <h2>Onde os interessados se perdem</h2>
+  </div>
+  <div class="body">
+    <div class="grid g4">
+      <div class="card">
+        <div class="num" style="background:var(--green)">1</div>
+        <h3>Busca no Google</h3><p class="sm">"personal trainer perto de mim"</p>
+      </div>
+      <div class="card">
+        <div class="num" style="background:var(--green)">2</div>
+        <h3>Encontra sua ficha</h3><p class="sm">5,0 · 63 avaliações</p>
+      </div>
+      <div class="card bad">
+        <div class="num" style="background:var(--red)">3</div>
+        <h3>Clica no seu site</h3><p class="sm" style="color:var(--red)">endereço antigo, botões sem destino</p>
+      </div>
+      <div class="card bad">
+        <div class="num" style="background:var(--red)">4</div>
+        <h3>Chama no WhatsApp</h3><p class="sm" style="color:var(--red)">só quem insistiu chega aqui</p>
+      </div>
+    </div>
+    <div class="card" style="margin-top:auto">
+      <h3 style="font-size:1.6em">Os dois primeiros passos você já ganhou.</h3>
+      <p>A perda acontece do terceiro em diante — e é justamente a parte que se conserta em dias, não em anos. Cada pessoa que chega na sua ficha e não vira conversa é um aluno que foi treinar em outro lugar.</p>
+    </div>
+  </div>
+  <div class="note">Este é o slide-chave. Mostre que ele já venceu a parte cara do funil e está perdendo na parte barata de arrumar.</div>
+</section>
+
+<!-- 4 — DOIS ENDEREÇOS -->
+<section class="slide">
+  <div class="head">
+    <span class="badge" style="background:var(--red)">Urgente</span>
+    <p class="eyebrow">Ponto crítico 1</p>
+    <h2>Seu negócio tem dois endereços na internet</h2>
+  </div>
+  <div class="body">
+    <div class="grid g2">
+      <div class="card good">
+        <p class="label" style="color:var(--green)">No Google Maps</p>
+        <p style="font-size:1.25em;color:var(--ink);line-height:1.35">R. Madre Emilie de Villeneuve, 509B<br>Vila Santa Catarina — SP</p>
+      </div>
+      <div class="card bad">
+        <p class="label" style="color:var(--red)">No seu site</p>
+        <p style="font-size:1.25em;color:var(--ink);line-height:1.35">Av. Mascote, 486 sala 24<br>Vila Mascote — SP</p>
+      </div>
+    </div>
+    <div style="margin-top:auto">
+      <h3 style="margin-bottom:.7em">Por que isso é grave</h3>
+      <ul>
+        <li>O Google trata endereços conflitantes como informação não confiável e rebaixa a ficha nas buscas do bairro</li>
+        <li>Tem gente indo no endereço antigo e desistindo no caminho</li>
+        <li>O mesmo conflito aparece nos horários: 4h40 no Google contra 6h no site</li>
+        <li>O rodapé do site ainda marca 2021 — sinaliza negócio parado para quem lê e para o Google</li>
+      </ul>
+    </div>
+  </div>
+  <div class="note">Se ele só levar uma coisa desta apresentação, que seja esta. É concreto, verificável na hora e ele consegue conferir no celular enquanto você fala.</div>
+</section>
+
+<!-- 5 — BOTÕES -->
+<section class="slide">
+  <div class="head">
+    <span class="badge" style="background:var(--orange-d)">Alto</span>
+    <p class="eyebrow">Ponto crítico 2</p>
+    <h2>Os botões do site não levam ao WhatsApp</h2>
+  </div>
+  <div class="body">
+    <div class="grid g2">
+      <div class="card bad">
+        <p class="label" style="color:var(--red)">Hoje</p>
+        <ul>
+          <li>Os cinco botões "Agende já" recarregam a própria página</li>
+          <li>O único link de WhatsApp é um ícone pequeno no rodapé</li>
+          <li>Quem chega precisa procurar como falar com você</li>
+          <li>Nada indica qual serviço a pessoa estava vendo</li>
+        </ul>
+      </div>
+      <div class="card good">
+        <p class="label" style="color:var(--green)">Como deveria ser</p>
+        <ul>
+          <li>Botão de WhatsApp fixo na tela, acompanhando a rolagem</li>
+          <li>Cada serviço com botão próprio abrindo a conversa</li>
+          <li>Mensagem já escrita: "quero saber mais sobre a assessoria de corrida"</li>
+          <li>Você recebe o lead sabendo o que ele estava lendo</li>
+        </ul>
+      </div>
+    </div>
+    <p class="kicker">A pessoa decidida some em segundos se precisar procurar como falar com você.</p>
+  </div>
+  <div class="note">Peça para ele abrir o próprio site no celular durante a conversa e clicar num "Agende já". O impacto de ver ao vivo é muito maior do que ouvir.</div>
+</section>
+
+<!-- 6 — GOOGLE -->
+<section class="slide">
+  <div class="head">
+    <span class="badge" style="background:var(--orange-d)">Alto</span>
+    <p class="eyebrow">Ponto crítico 3</p>
+    <h2>O que o Google entende do seu negócio</h2>
+  </div>
+  <div class="body">
+    <div class="grid g3">
+      <div class="card">
+        <div class="num" style="background:var(--orange)">1</div>
+        <h3>Categoria</h3>
+        <p class="sm">A ficha aparece classificada em tipos de comércio e alimentos — não como personal trainer ou academia.</p>
+        <p class="hl-line">Você fica fora das buscas de maior intenção da região.</p>
+      </div>
+      <div class="card">
+        <div class="num" style="background:var(--orange)">2</div>
+        <h3>Nutrição</h3>
+        <p class="sm">O nome no Google diz "e Nutrição" e os alunos citam o plano alimentar. O site não menciona nutrição em nenhum lugar.</p>
+        <p class="hl-line">O serviço existe, vende, e ninguém encontra.</p>
+      </div>
+      <div class="card">
+        <div class="num" style="background:var(--orange)">3</div>
+        <h3>Serviços</h3>
+        <p class="sm">Reabilitação, corrida e aplicativo estão no site, mas não estão cadastrados como serviços na ficha do Google.</p>
+        <p class="hl-line">O Google não mostra o que você não declarou.</p>
+      </div>
+    </div>
+    <p class="kicker">Nada disso custa dinheiro para arrumar. Custa saber onde mexer.</p>
+  </div>
+  <div class="note">Confirme a categoria no painel dele durante a reunião — a leitura veio da API pública. Se estiver certa, ótimo; se não, você acabou de achar dinheiro no chão.</div>
+</section>
+
+<!-- 7 — AVALIAÇÕES -->
+<section class="slide dark">
+  <div class="head">
+    <p class="eyebrow">A oportunidade que ninguém viu</p>
+    <h2>Suas avaliações vendem algo que você não anuncia</h2>
+  </div>
+  <div class="body">
+    <div class="grid g2">
+      <div class="card"><h3 style="color:var(--orange-hi)">Dor e lesão</h3><p class="sm">Alunos relatam bursite de quadril e dor forte resolvidas com treino específico.</p></div>
+      <div class="card"><h3 style="color:var(--orange-hi)">Reabilitação</h3><p class="sm">Casos de saída de atrofia, encurtamento e obesidade até a normalidade.</p></div>
+      <div class="card"><h3 style="color:var(--orange-hi)">Adesão longa</h3><p class="sm">Um mês de teste virando plano de seis meses. Outro aluno há quatorze anos.</p></div>
+      <div class="card"><h3 style="color:var(--orange-hi)">Estrutura</h3><p class="sm">Aparelhos novos, turmas pequenas e atenção individual dentro do grupo.</p></div>
+    </div>
+    <div class="card hl" style="margin-top:auto">
+      <h3 style="color:#fff;font-size:1.5em;margin-bottom:.4em">Seu diferencial real é treinar quem tem dor ou limitação — e isso não aparece em lugar nenhum.</h3>
+      <p class="sm">"Personal trainer" você disputa com dezenas de concorrentes num raio de dois quilômetros. "Treino para quem sente dor e não quer parar" você ganha sozinho.</p>
+    </div>
+  </div>
+  <div class="note">Aqui você deixa de ser fornecedor de site e vira consultor. Esse insight veio de ler as 63 avaliações — mostre que você leu.</div>
+</section>
+
+<!-- 8 — RESUMO -->
+<section class="slide">
+  <div class="head">
+    <p class="eyebrow">Resumo</p>
+    <h2>Sete achados, por ordem de impacto</h2>
+  </div>
+  <div class="body">
+    <div class="rows">
+      <div class="row"><span class="n">01</span><span class="t">Endereço divergente entre Google e site</span><span class="pill" style="background:var(--red)">Urgente</span></div>
+      <div class="row"><span class="n">02</span><span class="t">Botões do site não levam ao WhatsApp</span><span class="pill" style="background:var(--orange-d)">Alto</span></div>
+      <div class="row"><span class="n">03</span><span class="t">Categoria do Google aparentemente incorreta</span><span class="pill" style="background:var(--orange-d)">Alto</span></div>
+      <div class="row"><span class="n">04</span><span class="t">Nutrição vendida mas ausente do site</span><span class="pill" style="background:var(--orange-d)">Alto</span></div>
+      <div class="row"><span class="n">05</span><span class="t">Horários conflitantes entre as duas fontes</span><span class="pill" style="background:var(--slate)">Médio</span></div>
+      <div class="row"><span class="n">06</span><span class="t">63 avaliações presas dentro do Google</span><span class="pill" style="background:var(--slate)">Médio</span></div>
+      <div class="row"><span class="n">07</span><span class="t">Nenhuma medição de visitas ou de cliques</span><span class="pill" style="background:var(--slate)">Médio</span></div>
+    </div>
+  </div>
+  <div class="note">Deixe este slide na tela enquanto ele reage. É o momento em que ele mesmo pergunta quanto custa resolver.</div>
+</section>
+
+<!-- 9 — PLANO -->
+<section class="slide">
+  <div class="head">
+    <p class="eyebrow">Proposta de trabalho</p>
+    <h2>O plano em três fases</h2>
+  </div>
+  <div class="body">
+    <div class="grid g3">
+      <div class="card">
+        <span class="tag" style="background:var(--green)">Fase 1</span>
+        <h3 style="font-size:2em;margin-bottom:0">Corrigir</h3>
+        <p class="sm" style="font-style:italic;color:var(--gray-l);margin-bottom:1em">Semana 1</p>
+        <ul>
+          <li>Unificar endereço, telefone e horários nas duas pontas</li>
+          <li>Ajustar categoria e cadastrar todos os serviços no Google</li>
+          <li>Atualizar o site atual e ligar os botões ao WhatsApp</li>
+        </ul>
+      </div>
+      <div class="card">
+        <span class="tag" style="background:var(--orange-d)">Fase 2</span>
+        <h3 style="font-size:2em;margin-bottom:0">Converter</h3>
+        <p class="sm" style="font-style:italic;color:var(--gray-l);margin-bottom:1em">Semana 2</p>
+        <ul>
+          <li>Landing page de vendas com os seis serviços</li>
+          <li>WhatsApp com mensagem própria por serviço</li>
+          <li>Seção dedicada a reabilitação e treino com dor</li>
+          <li>Avaliações do Google exibidas na página</li>
+        </ul>
+      </div>
+      <div class="card">
+        <span class="tag" style="background:var(--ink3)">Fase 3</span>
+        <h3 style="font-size:2em;margin-bottom:0">Crescer</h3>
+        <p class="sm" style="font-style:italic;color:var(--gray-l);margin-bottom:1em">A partir do mês 2</p>
+        <ul>
+          <li>Medição de visitas e de cliques no WhatsApp</li>
+          <li>Rotina de captação de novas avaliações</li>
+          <li>Conteúdo mensal e manutenção da página</li>
+        </ul>
+      </div>
+    </div>
+    <p class="kicker" style="font-size:1.15em">Prazo total de entrega: 7 dias úteis · Duas rodadas de revisão incluídas</p>
+  </div>
+  <div class="note">Fase 1 é o que ele mais precisa e o que menos imagina que precisa. Considere entregá-la de brinde ao fechar as fases 2 e 3 — vira gatilho de reciprocidade.</div>
+</section>
+
+<!-- 10 — ANTES E DEPOIS -->
+<section class="slide">
+  <div class="head">
+    <p class="eyebrow">O que muda</p>
+    <h2>Do jeito que está para o jeito que fica</h2>
+  </div>
+  <div class="body">
+    <div>
+      <div class="cmp">
+        <span></span>
+        <span class="hdr" style="color:var(--slate)">Hoje</span>
+        <span class="hdr" style="color:var(--green)">Depois</span>
+      </div>
+      <div class="cmp"><span class="k">Endereço</span><span class="v">Duas versões conflitantes</span><span class="v new">Uma informação só, em toda parte</span></div>
+      <div class="cmp"><span class="k">Contato</span><span class="v">WhatsApp escondido no rodapé</span><span class="v new">Um clique em qualquer ponto da página</span></div>
+      <div class="cmp"><span class="k">Lead</span><span class="v">"Oi, quero informação"</span><span class="v new">"Quero saber mais sobre a corrida"</span></div>
+      <div class="cmp"><span class="k">Reputação</span><span class="v">63 avaliações só dentro do Google</span><span class="v new">Prova social visível para quem visita</span></div>
+      <div class="cmp"><span class="k">Decisão</span><span class="v">Baseada em achismo</span><span class="v new">Baseada em número de cliques</span></div>
+    </div>
+  </div>
+  <div class="note">Fechamento lógico. Nada aqui promete faturamento — promete controle e caminho. Nunca prometa número de alunos.</div>
+</section>
+
+<!-- 11 — PRÓXIMO PASSO -->
+<section class="slide dark">
+  <div class="cover">
+    <div class="txt">
+      <p class="eyebrow">Próximo passo</p>
+      <h2 style="font-size:2.9em;line-height:1.06">A reputação já está construída.<br>Falta o caminho até você.</h2>
+      <p class="sub" style="margin-bottom:0">Uma conversa de trinta minutos para alinhar prioridades e material. A partir daí, sete dias úteis até a página no ar.</p>
+    </div>
+  </div>
+  <div class="cta">
+    <b>Vamos começar</b>
+    <p class="sm">[Seu nome] · [seu WhatsApp] · [seu e-mail]</p>
+  </div>
+  <div class="note">Encerre pedindo apenas a reunião de trinta minutos, não a assinatura. O contrato vem depois do briefing.</div>
+</section>
+
+</div></div>
+
+<div id="help">← → navega · N notas · P imprime</div>
+<div id="notes"></div>
+
+<div id="bar">
+  <button id="prev" aria-label="Slide anterior">‹</button>
+  <span id="count"></span>
+  <button id="next" aria-label="Próximo slide">›</button>
+  <button id="btnNotes" aria-label="Mostrar notas do apresentador"
+    style="font-size:14px;font-family:var(--H);font-weight:700">N</button>
+</div>
+
+<script>
+const slides = Array.from(document.querySelectorAll(".slide"));
+const notesEl = document.getElementById("notes");
+const countEl = document.getElementById("count");
+let i = 0, notesOn = false;
+
+const notes = slides.map(s => {
+  const n = s.querySelector(".note");
+  const t = n ? n.textContent.trim() : "";
+  if (n) n.remove();
+  return t;
+});
+
+function show(n){
+  i = Math.max(0, Math.min(slides.length - 1, n));
+  slides.forEach((s, k) => s.classList.toggle("on", k === i));
+  slides[i].scrollTop = 0;
+  countEl.textContent = String(i + 1).padStart(2, "0") + " / " + slides.length;
+  notesEl.innerHTML = "<b>Nota do apresentador</b>" + notes[i];
+  document.getElementById("prev").disabled = i === 0;
+  document.getElementById("next").disabled = i === slides.length - 1;
+  history.replaceState(null, "", "#" + (i + 1));
+}
+function toggleNotes(){ notesOn = !notesOn; notesEl.classList.toggle("on", notesOn); }
+
+document.getElementById("prev").onclick = () => show(i - 1);
+document.getElementById("next").onclick = () => show(i + 1);
+document.getElementById("btnNotes").onclick = toggleNotes;
+
+document.addEventListener("keydown", e => {
+  const k = e.key.toLowerCase();
+  if (e.key === "ArrowRight" || e.key === " " || e.key === "PageDown") { show(i + 1); e.preventDefault(); }
+  if (e.key === "ArrowLeft" || e.key === "PageUp") show(i - 1);
+  if (e.key === "Home") show(0);
+  if (e.key === "End") show(slides.length - 1);
+  if (k === "n") toggleNotes();
+  if (k === "p") window.print();
+});
+
+/* deslizar na horizontal, sem atrapalhar a rolagem vertical */
+let x0 = null, y0 = null;
+document.addEventListener("touchstart", e => {
+  x0 = e.changedTouches[0].clientX; y0 = e.changedTouches[0].clientY;
+}, { passive: true });
+document.addEventListener("touchend", e => {
+  if (x0 === null) return;
+  const dx = e.changedTouches[0].clientX - x0;
+  const dy = e.changedTouches[0].clientY - y0;
+  if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.5) show(dx < 0 ? i + 1 : i - 1);
+  x0 = y0 = null;
+}, { passive: true });
+
+show((parseInt(location.hash.slice(1), 10) || 1) - 1);
+</script>
+</body>
+</html>

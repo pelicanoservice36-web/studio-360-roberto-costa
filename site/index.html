@@ -1,0 +1,1019 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex, nofollow">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Studio 360 Roberto Costa | Treino, corrida e reabilitação</title>
+<meta name="description" content="Treinamento personalizado, assessoria de corrida e treino para quem está voltando de lesão, no Studio 360 com Roberto Costa. Presencial no studio ou online pelo app. Fale pelo WhatsApp.">
+<meta name="theme-color" content="#0B1220">
+<link rel="canonical" href="https://www.360robertocosta.com/">
+
+<!-- Open Graph / redes sociais -->
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:title" content="Studio 360 Roberto Costa | Treino, corrida e reabilitação">
+<meta property="og:description" content="Um plano só, fechando o ciclo: treino, corrida e volta ao movimento com acompanhamento de verdade.">
+<meta property="og:image" content="imagens/og-studio360.jpg">
+<meta property="og:url" content="https://www.360robertocosta.com/">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Barlow:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================================
+   TOKENS — troque as 4 cores abaixo pelas cores da identidade
+   ============================================================ */
+:root{
+  --primary:#EA580C;        /* laranja energia — cor principal / botões */
+  --primary-hi:#F97316;     /* hover do primário */
+  --accent:#10B981;         /* verde "pace" — destaques e WhatsApp */
+  --ink:#0B1220;            /* fundo escuro (asfalto) */
+
+  --ink-2:#131C2B;          /* cartões no escuro */
+  --ink-3:#1B2637;
+  --paper:#F5F7FA;          /* fundo claro */
+  --white:#FFFFFF;
+  --fg:#0F172A;             /* texto sobre claro */
+  --fg-soft:#4B5768;
+  --fg-inv:#F8FAFC;         /* texto sobre escuro */
+  --fg-inv-soft:#9FB0C4;
+  --line:#E2E8F0;
+  --line-inv:rgba(255,255,255,.10);
+
+  --radius:14px;
+  --radius-lg:22px;
+  --shadow:0 1px 2px rgba(15,23,42,.06), 0 12px 32px -12px rgba(15,23,42,.18);
+  --shadow-hi:0 2px 4px rgba(15,23,42,.08), 0 22px 48px -16px rgba(15,23,42,.28);
+
+  --sp-1:8px; --sp-2:16px; --sp-3:24px; --sp-4:32px; --sp-5:48px; --sp-6:64px; --sp-7:96px;
+  --wrap:1160px;
+  --t:220ms cubic-bezier(.2,.6,.2,1);
+
+  --display:"Barlow Condensed", "Arial Narrow", system-ui, sans-serif;
+  --body:"Barlow", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+/* ============================================================
+   BASE
+   ============================================================ */
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth; -webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--paper); color:var(--fg);
+  font-family:var(--body); font-size:17px; line-height:1.6; font-weight:400;
+  -webkit-font-smoothing:antialiased; overflow-x:hidden;
+  -webkit-tap-highlight-color:rgba(234,88,12,.18);
+}
+/* Trava a rolagem do fundo enquanto o menu mobile está aberto */
+body.is-locked{overflow:hidden}
+/* Âncoras param abaixo do header fixo */
+section[id]{scroll-margin-top:76px}
+img{max-width:100%; display:block; height:auto}
+a{color:inherit; text-decoration:none}
+button{font:inherit; cursor:pointer}
+h1,h2,h3,h4{font-family:var(--display); font-weight:700; line-height:1.04; letter-spacing:-.01em; margin:0}
+h1{font-size:clamp(2.3rem,5.4vw,3.9rem); text-transform:uppercase}
+h2{font-size:clamp(2rem,4.6vw,3.1rem); text-transform:uppercase}
+h3{font-size:1.42rem}
+p{margin:0}
+:focus-visible{outline:3px solid var(--accent); outline-offset:3px; border-radius:6px}
+
+.wrap{width:100%; max-width:var(--wrap); margin-inline:auto; padding-inline:20px}
+.section{padding-block:clamp(56px,8vw,var(--sp-7))}
+.section--dark{background:var(--ink); color:var(--fg-inv)}
+.section--paper{background:var(--paper)}
+.section--white{background:var(--white)}
+
+.eyebrow{
+  font-family:var(--display); font-weight:600; text-transform:uppercase;
+  letter-spacing:.16em; font-size:.86rem; color:var(--primary);
+  display:flex; align-items:center; gap:10px; margin-bottom:14px;
+}
+.eyebrow::before{content:""; width:26px; height:2px; background:var(--primary); flex:none}
+.section--dark .eyebrow{color:var(--primary-hi)}
+.lede{font-size:1.08rem; color:var(--fg-soft); max-width:60ch}
+.section--dark .lede{color:var(--fg-inv-soft)}
+.head{margin-bottom:var(--sp-5); max-width:760px}
+
+/* Botões */
+.btn{
+  display:inline-flex; align-items:center; justify-content:center; gap:10px;
+  min-height:52px; padding:14px 26px; border-radius:999px; border:2px solid transparent;
+  font-family:var(--display); font-weight:700; text-transform:uppercase; letter-spacing:.06em;
+  font-size:1.05rem; transition:transform var(--t), background var(--t), border-color var(--t), color var(--t);
+}
+.btn svg{width:20px; height:20px; flex:none}
+.btn--wa{
+  background:#25D366; color:#04231A;
+  box-shadow:0 6px 18px -6px rgba(37,211,102,.55);
+}
+.btn--wa:hover{background:#31E97A; transform:translateY(-2px); box-shadow:0 10px 24px -6px rgba(37,211,102,.7)}
+.btn--primary{background:var(--primary); color:#fff}
+.btn--primary:hover{background:var(--primary-hi); transform:translateY(-2px)}
+.btn--ghost{border-color:var(--line-inv); color:var(--fg-inv)}
+.btn--ghost:hover{border-color:var(--primary-hi); color:var(--primary-hi)}
+.btn--ghost-dark{border-color:#CBD5E1; color:var(--fg)}
+.btn--ghost-dark:hover{border-color:var(--primary); color:var(--primary)}
+.btn--block{width:100%}
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+.header{
+  position:sticky; top:0; z-index:60; background:rgba(11,18,32,.82);
+  backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px);
+  border-bottom:1px solid transparent; transition:border-color var(--t), background var(--t);
+}
+.header.is-stuck{border-bottom-color:var(--line-inv); background:rgba(11,18,32,.96)}
+.nav{display:flex; align-items:center; gap:var(--sp-3); min-height:64px}
+.brand{display:flex; align-items:center; gap:10px; color:var(--fg-inv); margin-right:auto}
+.brand__mark{
+  width:38px; height:38px; border-radius:50%; flex:none;
+  border:2px solid var(--primary); display:grid; place-items:center;
+  font-family:var(--display); font-weight:700; font-size:.82rem; color:var(--primary);
+}
+.brand__txt{font-family:var(--display); text-transform:uppercase; line-height:1.05}
+.brand__txt b{display:block; font-size:1.16rem; letter-spacing:.02em}
+.brand__txt span{font-size:.74rem; letter-spacing:.18em; color:var(--fg-inv-soft)}
+.nav__links{display:flex; align-items:center; gap:var(--sp-3)}
+.nav__links a{
+  font-family:var(--display); text-transform:uppercase; letter-spacing:.08em;
+  font-size:1rem; font-weight:600; color:var(--fg-inv-soft); transition:color var(--t);
+  padding:6px 0;
+}
+.nav__links a:hover{color:var(--fg-inv)}
+.nav .btn{min-height:46px; padding:10px 22px; font-size:.98rem}
+/* O WhatsApp é a ação principal do site — no header ele ganha anel e brilho */
+.nav .btn--wa{
+  color:#03291D; font-weight:700; letter-spacing:.07em;
+  box-shadow:0 0 0 3px rgba(37,211,102,.22), 0 8px 22px -6px rgba(37,211,102,.65);
+}
+.nav .btn--wa:hover{box-shadow:0 0 0 4px rgba(37,211,102,.3), 0 12px 26px -6px rgba(37,211,102,.8)}
+.nav__toggle{
+  display:none; width:46px; height:46px; border-radius:12px; background:transparent;
+  border:1px solid var(--line-inv); color:var(--fg-inv); place-items:center;
+}
+.nav__toggle svg{width:24px; height:24px}
+
+@media (max-width:960px){
+  .nav__links{
+    position:fixed; inset:64px 0 0 0; flex-direction:column; align-items:stretch; gap:0;
+    background:var(--ink); padding:8px 20px calc(28px + env(safe-area-inset-bottom));
+    overflow-y:auto; -webkit-overflow-scrolling:touch; overscroll-behavior:contain;
+    transform:translateY(-8px); opacity:0; pointer-events:none; transition:opacity var(--t), transform var(--t);
+  }
+  .nav__links.is-open{opacity:1; transform:none; pointer-events:auto}
+  .nav__links a{
+    display:flex; align-items:center; min-height:56px; padding:14px 0;
+    border-bottom:1px solid var(--line-inv); font-size:1.15rem;
+  }
+  .nav__links a:active{color:var(--primary-hi)}
+  .nav__links .btn{margin-top:20px; border-bottom:0; min-height:56px; font-size:1.05rem}
+  .nav__toggle{display:grid}
+}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero{position:relative; background:var(--ink); color:var(--fg-inv); overflow:hidden}
+.hero::before{
+  content:""; position:absolute; inset:0;
+  background:
+    radial-gradient(760px 460px at 78% 18%, rgba(234,88,12,.20), transparent 62%),
+    radial-gradient(620px 420px at 8% 92%, rgba(16,185,129,.13), transparent 60%);
+  pointer-events:none;
+}
+.hero__grid{
+  position:relative; display:grid; grid-template-columns:1.08fr .92fr; gap:var(--sp-5);
+  /* Ancorado no topo: a coluna da foto é mais alta e, centralizada,
+     empurrava o texto para baixo com uma faixa vazia sob o header. */
+  align-items:start; padding-block:20px clamp(24px,3vw,48px);
+}
+/* Sem isto, a largura mínima do conteúdo (a faixa de tags, que não quebra
+   linha) impede a coluna de encolher e o hero estoura a tela no celular. */
+.hero__grid > *{min-width:0}
+.hero h1{margin-bottom:var(--sp-2)}
+.hero h1 em{font-style:normal; color:var(--primary-hi)}
+.hero__sub{font-size:1.1rem; color:var(--fg-inv-soft); max-width:52ch; margin-bottom:var(--sp-3)}
+.hero__cta{display:flex; flex-wrap:wrap; gap:12px; margin-bottom:var(--sp-3)}
+.hero__tags{display:flex; flex-wrap:wrap; gap:10px}
+.tag{
+  display:inline-flex; align-items:center; gap:8px; padding:8px 15px; border-radius:999px;
+  border:1px solid var(--line-inv); background:rgba(255,255,255,.03);
+  font-family:var(--display); text-transform:uppercase; letter-spacing:.09em;
+  font-size:.84rem; font-weight:600; color:var(--fg-inv-soft);
+}
+.tag svg{width:15px; height:15px; color:var(--accent)}
+
+/* Assinatura visual: retrato do Roberto em destaque, estilo pôster */
+/* A margem reserva o espaço da marca-d'água "360", que sobe além do topo. */
+/* Sobe até encostar no topo da coluna de texto: retrato e "360" começam na
+   mesma linha do h1, sem faixa vazia acima. */
+.hero__visual{position:relative; margin-top:-6px}
+/* Caixa na proporção exata da foto (2/3): sem a folga que a máscara antiga
+   exigia, a cabeça começa no topo da coluna, alinhada com o h1. */
+.hero__portrait{
+  position:relative; z-index:1;
+  width:100%; max-width:340px; margin-inline:auto; aspect-ratio:2/3;
+}
+/* Halo circular atrás do retrato — separa a figura do fundo escuro */
+.hero__portrait::before{
+  content:""; position:absolute; z-index:0; pointer-events:none;
+  left:50%; top:42%; transform:translate(-50%,-50%);
+  width:150%; aspect-ratio:1; border-radius:50%;
+  background:
+    radial-gradient(circle at 50% 50%,
+      rgba(255,255,255,.13) 0%,
+      rgba(249,115,22,.15) 32%,
+      rgba(234,88,12,.06) 52%,
+      transparent 70%);
+  filter:blur(10px);
+}
+/* Marca-d'água em segundo plano: fica atrás do retrato recortado, centralizada
+   na altura dos ombros, para o contorno do Roberto passar por cima do "360". */
+.hero__watermark{
+  position:absolute; z-index:0; left:50%; top:26%; transform:translate(-50%,-50%);
+  font-family:var(--display); font-weight:800; letter-spacing:-.04em; line-height:.82;
+  font-size:clamp(150px,26vw,300px); white-space:nowrap;
+  color:transparent; -webkit-text-stroke:2px rgba(249,115,22,.42);
+  background:linear-gradient(180deg, rgba(249,115,22,.3), rgba(234,88,12,.04));
+  -webkit-background-clip:text; background-clip:text;
+  pointer-events:none;
+}
+/* PNG já recortado (sem fundo): a figura se apoia direto no fundo da seção,
+   sem máscara. Só uma sombra projetada para descolar do escuro. */
+.hero__photo{
+  position:relative; z-index:1; display:block; width:100%; height:100%;
+  /* contain + alinhamento no rodapé: a folga da caixa fica toda acima da cabeça */
+  object-fit:contain; object-position:50% 100%;
+  filter:contrast(1.04) saturate(1.06) drop-shadow(0 18px 40px rgba(0,0,0,.55));
+  /* Sombreamento na cor do fundo: os ombros e as laterais do tronco dissolvem
+     no --ink em vez de terminarem num contorno recortado. O rosto, mais alto e
+     mais ao centro, fica fora das duas rampas e permanece nítido. */
+  -webkit-mask-image:
+    linear-gradient(180deg, #000 52%, rgba(0,0,0,.55) 80%, transparent 99%),
+    linear-gradient(90deg, transparent 0%, rgba(0,0,0,.5) 9%, #000 22%, #000 78%, rgba(0,0,0,.5) 91%, transparent 100%);
+  mask-image:
+    linear-gradient(180deg, #000 52%, rgba(0,0,0,.55) 80%, transparent 99%),
+    linear-gradient(90deg, transparent 0%, rgba(0,0,0,.5) 9%, #000 22%, #000 78%, rgba(0,0,0,.5) 91%, transparent 100%);
+  -webkit-mask-composite:source-in;
+  mask-composite:intersect;
+}
+
+/* Credenciais logo abaixo do retrato — quem é o profissional, em uma olhada */
+.hero__creds{
+  position:relative; z-index:2;
+  max-width:420px; margin:-46px auto 0; text-align:center;
+}
+.hero__creds b{
+  display:block; font-family:var(--display); text-transform:uppercase;
+  font-size:1.5rem; letter-spacing:.02em; line-height:1.1; color:var(--fg-inv);
+}
+.hero__creds span{
+  display:block; font-family:var(--display); text-transform:uppercase;
+  font-size:.84rem; letter-spacing:.16em; color:var(--primary-hi); margin-top:6px;
+}
+.hero__creds ul{
+  list-style:none; margin:14px 0 0; padding:0;
+  display:flex; flex-wrap:wrap; justify-content:center; gap:8px;
+}
+.hero__creds li{
+  padding:7px 14px; border-radius:999px;
+  border:1px solid rgba(249,115,22,.3); background:rgba(249,115,22,.08);
+  font-family:var(--display); text-transform:uppercase; letter-spacing:.09em;
+  font-size:.8rem; font-weight:600; color:var(--fg-inv);
+}
+
+@media (max-width:900px){
+  /* No celular a mensagem vem primeiro: o texto e o botão aparecem sem rolar. */
+  .hero__grid{grid-template-columns:1fr; gap:var(--sp-4); padding-block:18px 8px}
+  .hero__visual{order:2; margin-top:12px}
+  .hero__portrait{max-width:300px}
+  .hero__creds{max-width:340px; margin-top:-34px}
+  .hero__creds b{font-size:1.35rem}
+  /* No celular o retrato é estreito (300px): com o "360" do mesmo tamanho ele
+     ficava todo escondido atrás da cabeça. Aqui ele passa da silhueta e sobe,
+     de modo que os arcos apareçam dos dois lados. */
+  .hero__watermark{font-size:clamp(120px,38vw,200px); top:21%}
+  .hero__sub{font-size:1.04rem}
+  /* Botões ocupam a largura toda — alvo de toque grande e previsível */
+  .hero__cta{gap:10px}
+  .hero__cta .btn{flex:1 1 100%}
+  /* As tags viram uma faixa deslizante em vez de empilhar três linhas */
+  .hero__tags{
+    flex-wrap:nowrap; overflow-x:auto; scroll-snap-type:x proximity;
+    -webkit-overflow-scrolling:touch; scrollbar-width:none;
+    margin-inline:-20px; padding-inline:20px;
+  }
+  .hero__tags::-webkit-scrollbar{display:none}
+  .tag{flex:none; scroll-snap-align:start}
+}
+
+/* Faixa de credenciais */
+.strip{background:var(--ink-2); border-block:1px solid var(--line-inv); color:var(--fg-inv)}
+.strip__grid{display:grid; grid-template-columns:repeat(4,1fr); gap:var(--sp-2); padding-block:26px; text-align:center}
+.strip b{display:block; font-family:var(--display); font-size:2.05rem; color:var(--primary-hi); line-height:1}
+.strip span{font-size:.9rem; color:var(--fg-inv-soft)}
+@media (max-width:720px){.strip__grid{grid-template-columns:repeat(2,1fr); gap:var(--sp-3)}}
+
+/* ============================================================
+   MÉTODO
+   ============================================================ */
+.pillars{display:grid; grid-template-columns:repeat(3,1fr); gap:var(--sp-3)}
+.pillar{
+  background:var(--ink-2); border:1px solid var(--line-inv); border-radius:var(--radius-lg);
+  padding:var(--sp-4); transition:border-color var(--t), transform var(--t);
+}
+.pillar:hover{border-color:rgba(234,88,12,.5); transform:translateY(-3px)}
+.pillar__deg{
+  font-family:var(--display); font-size:.86rem; font-weight:700; letter-spacing:.16em;
+  color:var(--primary-hi); text-transform:uppercase; margin-bottom:14px; display:block;
+}
+.pillar h3{margin-bottom:10px; color:var(--fg-inv)}
+.pillar p{color:var(--fg-inv-soft); font-size:1rem}
+@media (max-width:860px){.pillars{grid-template-columns:1fr}}
+
+/* ============================================================
+   SERVIÇOS
+   ============================================================ */
+.cards{display:grid; grid-template-columns:repeat(3,1fr); gap:var(--sp-3)}
+.card{
+  background:var(--white); border:1px solid var(--line); border-radius:var(--radius-lg);
+  padding:var(--sp-4) var(--sp-3) var(--sp-3);
+  display:flex; flex-direction:column; box-shadow:var(--shadow);
+  transition:transform var(--t), box-shadow var(--t), border-color var(--t);
+}
+.card:hover{transform:translateY(-4px); box-shadow:var(--shadow-hi); border-color:#CBD5E1}
+.card__icon{
+  width:56px; height:56px; border-radius:16px; display:grid; place-items:center; margin-bottom:18px;
+  background:linear-gradient(140deg, rgba(234,88,12,.14), rgba(234,88,12,.05));
+  border:1px solid rgba(234,88,12,.24); color:var(--primary);
+}
+.card__icon svg{width:27px; height:27px}
+.card h3{margin-bottom:10px}
+.card__desc{color:var(--fg-soft); font-size:1rem; margin-bottom:18px}
+.card__list{list-style:none; margin:0 0 var(--sp-3); padding:0; display:grid; gap:9px}
+.card__list li{display:flex; gap:10px; align-items:flex-start; font-size:.98rem; color:var(--fg)}
+.card__list svg{width:19px; height:19px; flex:none; margin-top:3px; color:var(--accent)}
+.card .btn{margin-top:auto}
+.card--feature{background:var(--ink); border-color:var(--ink); color:var(--fg-inv)}
+.card--feature .card__desc{color:var(--fg-inv-soft)}
+.card--feature .card__list li{color:var(--fg-inv)}
+.card--feature .card__icon{background:rgba(255,255,255,.06); border-color:var(--line-inv); color:var(--primary-hi)}
+.card__flag{
+  position:absolute; top:16px; right:16px; background:var(--primary); color:#fff;
+  font-family:var(--display); font-size:.76rem; font-weight:700; letter-spacing:.12em;
+  text-transform:uppercase; padding:5px 11px; border-radius:999px;
+}
+.card--feature{position:relative}
+@media (max-width:1000px){.cards{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:680px){.cards{grid-template-columns:1fr}}
+
+/* ============================================================
+   SOBRE
+   ============================================================ */
+.about{display:grid; grid-template-columns:.85fr 1.15fr; gap:var(--sp-6); align-items:center}
+.about__media{position:relative}
+/* Mesmo PNG recortado do hero, apoiado no fundo da seção */
+.about__media img{
+  width:100%; aspect-ratio:4/5; object-fit:contain; object-position:50% 100%; display:block;
+  filter:contrast(1.04) saturate(1.06) drop-shadow(0 14px 32px rgba(0,0,0,.28));
+  /* Mesmo sombreamento do hero: ombros e laterais se fundem ao --ink */
+  -webkit-mask-image:
+    linear-gradient(180deg, #000 56%, rgba(0,0,0,.55) 82%, transparent 99%),
+    linear-gradient(90deg, transparent 0%, rgba(0,0,0,.5) 9%, #000 22%, #000 78%, rgba(0,0,0,.5) 91%, transparent 100%);
+  mask-image:
+    linear-gradient(180deg, #000 56%, rgba(0,0,0,.55) 82%, transparent 99%),
+    linear-gradient(90deg, transparent 0%, rgba(0,0,0,.5) 9%, #000 22%, #000 78%, rgba(0,0,0,.5) 91%, transparent 100%);
+  -webkit-mask-composite:source-in;
+  mask-composite:intersect;
+}
+.about p + p{margin-top:16px}
+.creds{list-style:none; padding:0; margin:var(--sp-3) 0 var(--sp-4); display:grid; gap:11px}
+.creds li{display:flex; gap:11px; align-items:flex-start; color:var(--fg)}
+.section--dark .creds li{color:var(--fg-inv)}
+.section--dark .creds svg{color:var(--primary-hi)}
+.creds svg{width:20px; height:20px; flex:none; margin-top:3px; color:var(--primary)}
+@media (max-width:880px){
+  .about{grid-template-columns:1fr; gap:var(--sp-4)}
+  .about__media img{aspect-ratio:4/5; max-width:420px; margin-inline:auto}
+}
+
+/* ============================================================
+   DEPOIMENTOS
+   ============================================================ */
+.quotes{display:grid; grid-template-columns:repeat(3,1fr); gap:var(--sp-3)}
+.quote{
+  background:var(--white); border:1px solid var(--line); border-radius:var(--radius-lg);
+  padding:var(--sp-3); display:flex; flex-direction:column; gap:16px; box-shadow:var(--shadow);
+}
+.quote__stars{display:flex; gap:3px; color:#F59E0B}
+.quote__stars svg{width:18px; height:18px}
+.quote p{font-size:1.02rem; color:var(--fg); flex:1}
+.quote__who{display:flex; align-items:center; gap:12px; border-top:1px solid var(--line); padding-top:14px}
+.quote__who img{width:46px; height:46px; border-radius:50%; object-fit:cover; flex:none; background:var(--line)}
+.quote__who b{display:block; font-family:var(--display); font-size:1.1rem}
+.quote__who span{font-size:.88rem; color:var(--fg-soft)}
+@media (max-width:900px){.quotes{grid-template-columns:1fr}}
+
+/* ============================================================
+   STUDIO / LOCALIZAÇÃO
+   ============================================================ */
+.studio{display:grid; grid-template-columns:1fr 1fr; gap:var(--sp-5); align-items:center}
+.studio__map{
+  border-radius:var(--radius-lg); overflow:hidden; border:1px solid var(--line-inv);
+  aspect-ratio:4/3; background:var(--ink-2);
+}
+.studio__map iframe{width:100%; height:100%; border:0; display:block}
+.info{list-style:none; padding:0; margin:var(--sp-3) 0 var(--sp-4); display:grid; gap:18px}
+.info li{display:flex; gap:14px; align-items:flex-start}
+.info svg{width:22px; height:22px; flex:none; margin-top:2px; color:var(--primary-hi)}
+.info b{display:block; font-family:var(--display); text-transform:uppercase; letter-spacing:.1em; font-size:.88rem; color:var(--fg-inv-soft)}
+.info span{color:var(--fg-inv)}
+@media (max-width:880px){.studio{grid-template-columns:1fr}}
+
+/* ============================================================
+   FAQ
+   ============================================================ */
+.faq{max-width:840px; margin-inline:auto}
+.faq__item{border-bottom:1px solid var(--line)}
+.faq__q{
+  width:100%; background:none; border:0; text-align:left; padding:22px 44px 22px 0;
+  position:relative; font-family:var(--display); font-size:1.24rem; font-weight:600; color:var(--fg);
+  transition:color var(--t);
+}
+.faq__q:hover{color:var(--primary)}
+.faq__q::after{
+  content:""; position:absolute; right:8px; top:50%; width:12px; height:12px;
+  border-right:2px solid currentColor; border-bottom:2px solid currentColor;
+  transform:translateY(-70%) rotate(45deg); transition:transform var(--t);
+}
+.faq__q[aria-expanded="true"]::after{transform:translateY(-30%) rotate(-135deg)}
+.faq__a{padding:0 0 22px; color:var(--fg-soft); max-width:70ch}
+.faq__a[hidden]{display:none}
+
+/* ============================================================
+   CTA FINAL + FOOTER
+   ============================================================ */
+.cta{background:linear-gradient(120deg, var(--primary) 0%, #C2410C 100%); color:#fff; text-align:center}
+.cta h2{margin-bottom:16px}
+.cta p{max-width:56ch; margin:0 auto var(--sp-4); font-size:1.1rem; color:rgba(255,255,255,.92)}
+.cta .btn--wa{background:#04231A; color:#fff; box-shadow:0 8px 24px -8px rgba(0,0,0,.5)}
+.cta .btn--wa:hover{background:#0a3a2c; box-shadow:0 12px 28px -8px rgba(0,0,0,.6)}
+
+.footer{background:var(--ink); color:var(--fg-inv-soft); padding-block:var(--sp-5) var(--sp-3)}
+.footer__grid{display:grid; grid-template-columns:1.4fr 1fr 1fr; gap:var(--sp-4); padding-bottom:var(--sp-4); border-bottom:1px solid var(--line-inv)}
+.footer h4{font-size:1.05rem; text-transform:uppercase; letter-spacing:.1em; color:var(--fg-inv); margin-bottom:16px}
+.footer ul{list-style:none; padding:0; margin:0; display:grid; gap:10px}
+.footer a:hover{color:var(--primary-hi)}
+.social{display:flex; gap:12px; margin-top:18px}
+.social a{
+  width:44px; height:44px; border-radius:50%; border:1px solid var(--line-inv);
+  display:grid; place-items:center; color:var(--fg-inv-soft); transition:all var(--t);
+}
+.social a:hover{border-color:var(--primary); color:var(--primary-hi)}
+.social svg{width:20px; height:20px}
+.footer__bottom{padding-top:22px; font-size:.86rem; display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap}
+@media (max-width:800px){.footer__grid{grid-template-columns:1fr; gap:var(--sp-3)}}
+
+/* Botão flutuante WhatsApp */
+.wa-float{
+  position:fixed; right:18px; z-index:70;
+  bottom:calc(18px + env(safe-area-inset-bottom));
+  width:60px; height:60px; border-radius:50%; background:#25D366; color:#fff;
+  display:grid; place-items:center; box-shadow:0 10px 30px -6px rgba(37,211,102,.6);
+  transition:transform var(--t);
+}
+.wa-float:hover{transform:scale(1.07)}
+.wa-float:active{transform:scale(.94)}
+.wa-float svg{width:32px; height:32px}
+/* Esconde o botão flutuante quando o menu está aberto, para não cobrir o menu */
+body.is-locked .wa-float{opacity:0; pointer-events:none}
+
+/* Reveal on scroll */
+.reveal{opacity:0; transform:translateY(22px); transition:opacity .55s ease, transform .55s cubic-bezier(.2,.6,.2,1)}
+.reveal.is-visible{opacity:1; transform:none}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms !important; animation-iteration-count:1 !important; transition-duration:.01ms !important}
+  html{scroll-behavior:auto}
+  .reveal{opacity:1; transform:none}
+  .ring__arc{stroke-dashoffset:0}
+}
+</style>
+</head>
+<body>
+
+<!-- ============================ HEADER ============================ -->
+<header class="header" id="header">
+  <div class="wrap nav">
+    <a class="brand" href="#top" aria-label="Studio 360 Roberto Costa — início">
+      <span class="brand__mark" aria-hidden="true">360</span>
+      <span class="brand__txt"><b>Studio 360</b><span>Roberto Costa</span></span>
+    </a>
+    <nav class="nav__links" id="menu" aria-label="Navegação principal">
+      <a href="#metodo">Método</a>
+      <a href="#servicos">Serviços</a>
+      <a href="#sobre">Sobre</a>
+      <a href="#studio">Studio</a>
+      <a href="#faq">Dúvidas</a>
+      <a class="btn btn--wa" data-wa data-msg="Olá, Roberto! Vim pelo site e quero saber mais sobre os treinos." href="#">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.25-.46-2.39-1.47-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37s-1.04 1.02-1.04 2.48 1.07 2.88 1.22 3.08c.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.63.71.23 1.36.19 1.87.12.57-.09 1.76-.72 2-1.41.25-.69.25-1.29.17-1.41-.07-.13-.27-.2-.57-.35zM12.05 21.5h-.01a9.42 9.42 0 01-4.8-1.32l-.34-.2-3.57.94.95-3.48-.22-.36a9.39 9.39 0 01-1.44-5.02c0-5.19 4.23-9.42 9.43-9.42a9.35 9.35 0 016.66 2.76 9.33 9.33 0 012.76 6.67c0 5.19-4.23 9.42-9.42 9.42zM20.52 3.48A11.78 11.78 0 0012.05 0C5.5 0 .18 5.32.17 11.87c0 2.09.55 4.13 1.59 5.93L.07 24l6.34-1.66a11.86 11.86 0 005.63 1.44h.01c6.54 0 11.87-5.33 11.87-11.88 0-3.17-1.23-6.15-3.4-8.42z"/></svg>
+        WhatsApp
+      </a>
+    </nav>
+    <button class="nav__toggle" id="navToggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
+  </div>
+</header>
+
+<!-- ============================ HERO ============================ -->
+<section class="hero" id="top">
+  <div class="wrap hero__grid">
+    <div class="hero__copy">
+      <p class="eyebrow">Treino · Corrida · Reabilitação</p>
+      <h1>Um plano só, <em>fechando o ciclo</em> do seu treino</h1>
+      <p class="hero__sub">Treinamento personalizado, assessoria de corrida e volta ao treino depois da lesão, com acompanhamento de verdade — presencial no Studio 360 ou online pelo aplicativo, onde você estiver.</p>
+      <div class="hero__cta">
+        <a class="btn btn--wa" data-wa data-msg="Olá, Roberto! Vim pelo site e quero montar meu plano de treino." href="#">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.25-.46-2.39-1.47-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37s-1.04 1.02-1.04 2.48 1.07 2.88 1.22 3.08c.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.63.71.23 1.36.19 1.87.12.57-.09 1.76-.72 2-1.41.25-.69.25-1.29.17-1.41-.07-.13-.27-.2-.57-.35zM12.05 21.5h-.01a9.42 9.42 0 01-4.8-1.32l-.34-.2-3.57.94.95-3.48-.22-.36a9.39 9.39 0 01-1.44-5.02c0-5.19 4.23-9.42 9.43-9.42a9.35 9.35 0 016.66 2.76 9.33 9.33 0 012.76 6.67c0 5.19-4.23 9.42-9.42 9.42zM20.52 3.48A11.78 11.78 0 0012.05 0C5.5 0 .18 5.32.17 11.87c0 2.09.55 4.13 1.59 5.93L.07 24l6.34-1.66a11.86 11.86 0 005.63 1.44h.01c6.54 0 11.87-5.33 11.87-11.88 0-3.17-1.23-6.15-3.4-8.42z"/></svg>
+          Falar pelo WhatsApp
+        </a>
+        <a class="btn btn--ghost" href="#servicos">Ver os serviços</a>
+      </div>
+      <div class="hero__tags">
+        <span class="tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg> Presencial e online</span>
+        <span class="tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg> Do primeiro 5 km à maratona</span>
+        <span class="tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg> Planilha ajustada toda semana</span>
+      </div>
+    </div>
+
+    <div class="hero__visual reveal">
+      <span class="hero__watermark" aria-hidden="true">360</span>
+      <div class="hero__portrait">
+        <img class="hero__photo" src="assets/roberto-recortado.png" width="680" height="1020" alt="Roberto Costa, treinador responsável pelo Studio 360.">
+      </div>
+      <div class="hero__creds">
+        <b>Roberto Costa</b>
+        <span>Educador físico · CREF 080194-G/SP</span>
+        <ul>
+          <li>10+ anos de experiência</li>
+          <li>Musculação e funcional</li>
+          <li>Corrida, trail e trekking</li>
+          <li>Reabilitação</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ NÚMEROS ============================ -->
+<section class="strip" aria-label="Números do Studio 360">
+  <div class="wrap strip__grid">
+    <div><b>10+</b><span>anos de experiência</span></div>
+    <div><b>300+</b><span>alunos acompanhados</span></div>
+    <div><b>50+</b><span>provas com atletas do studio</span></div>
+    <div><b>4</b><span>frentes em um só plano</span></div>
+  </div>
+</section>
+
+<!-- ============================ MÉTODO ============================ -->
+<section class="section section--dark" id="metodo">
+  <div class="wrap">
+    <div class="head reveal">
+      <p class="eyebrow">Método 360</p>
+      <h2>Treinar sem plano cansa. Com plano, evolui.</h2>
+      <p class="lede">A maioria dos resultados trava porque cada parte é cuidada por um lado — a academia de um jeito, a corrida de outro, a lesão tratada sem ninguém pensar na volta ao treino. No Studio 360 as frentes conversam entre si e são ajustadas juntas, todo mês.</p>
+    </div>
+    <div class="pillars">
+      <article class="pillar reveal">
+        <span class="pillar__deg">Avaliação</span>
+        <h3>Começa medindo, não chutando</h3>
+        <p>Anamnese, avaliação física e histórico de treino e de lesão definem o ponto de partida. Sem isso, qualquer planilha é palpite.</p>
+      </article>
+      <article class="pillar reveal">
+        <span class="pillar__deg">Integração</span>
+        <h3>Musculação e corrida alinhadas</h3>
+        <p>A carga da academia respeita o volume da semana de corrida, e as duas respeitam o que o seu corpo aguenta hoje. Um responsável só, olhando o conjunto.</p>
+      </article>
+      <article class="pillar reveal">
+        <span class="pillar__deg">Ajuste contínuo</span>
+        <h3>O plano muda conforme você responde</h3>
+        <p>Feedback semanal, reavaliação periódica e correção de rota. O treino do mês que vem nasce do que aconteceu neste.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ SERVIÇOS ============================ -->
+<section class="section section--paper" id="servicos">
+  <div class="wrap">
+    <div class="head reveal">
+      <p class="eyebrow">Serviços</p>
+      <h2>Escolha por onde começar</h2>
+      <p class="lede">Cada serviço funciona sozinho e todos podem ser combinados. Na conversa pelo WhatsApp definimos o formato ideal para o seu objetivo, sua rotina e seu prazo.</p>
+    </div>
+
+    <div class="cards">
+
+      <article class="card reveal">
+        <div class="card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="2" width="14" height="20" rx="2.5"/><path d="M12 18h.01"/><path d="M9 6h6"/></svg></div>
+        <h3>Aplicativo de treino personalizado</h3>
+        <p class="card__desc">Seu treino montado por objetivo e liberado no celular, com vídeo de cada exercício e registro de cargas. Treine na academia que você já frequenta, no horário que der.</p>
+        <ul class="card__list">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg> Vídeo e instrução de execução em cada exercício</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg> Progressão de carga revisada periodicamente</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg> Histórico para você enxergar a evolução</li>
+        </ul>
+        <a class="btn btn--primary btn--block" data-wa data-msg="Olá, Roberto! Quero saber mais sobre o aplicativo de treino personalizado." href="#">Quero saber mais</a>
+      </article>
+
+      <article class="card reveal">
+        <div class="card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l4-8 4 3 3-6 5 11"/><circle cx="17" cy="4" r="2"/></svg></div>
+        <h3>Assessoria e planejamento de corrida</h3>
+        <p class="card__desc">Planilha semanal com ritmo, volume e tipo de estímulo definidos para a sua prova alvo — do primeiro 5 km à maratona, com estratégia de prova incluída.</p>
+        <ul class="card__list">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg> Treinos por pace e zona de esforço</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg> Ajuste conforme o seu feedback e a sua semana</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg> Planejamento de ritmo para o dia da prova</li>
+        </ul>
+        <a class="btn btn--primary btn--block" data-wa data-msg="Olá, Roberto! Quero saber mais sobre a assessoria de corrida." href="#">Quero saber mais</a>
+      </article>
+
+      <article class="card reveal">
+        <div class="card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21c-4-1.5-7-5-7-9a5 5 0 019-3 5 5 0 019 3c0 4-3 7.5-7 9z"/><path d="M8.5 12h2l1-2 1.6 3.2 1.1-1.2h1.3"/></svg></div>
+        <h3>Reabilitação e volta ao treino</h3>
+        <p class="card__desc">Para quem está com dor, saindo da fisioterapia ou parado por causa de uma lesão. O trabalho começa no que o corpo aguenta hoje e reconstrói o condicionamento sem forçar o que ainda está sensível.</p>
+        <ul class="card__list">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg> Ponte entre a alta da fisioterapia e o treino normal</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg> Carga controlada e progressão respeitando a dor</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg> Diálogo com o seu fisioterapeuta ou médico</li>
+        </ul>
+        <a class="btn btn--primary btn--block" data-wa data-msg="Olá, Roberto! Quero saber mais sobre o treino para reabilitação e volta ao treino." href="#">Quero saber mais</a>
+      </article>
+
+      <article class="card reveal">
+        <div class="card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="17" rx="2.5"/><path d="M3 9h18M8 2v4M16 2v4"/><path d="M9 15l2 2 4-4"/></svg></div>
+        <h3>Planejamento e periodização</h3>
+        <p class="card__desc">A temporada inteira desenhada em ciclos: base, desenvolvimento, pico e recuperação, para você chegar inteiro e no melhor momento na data que importa.</p>
+        <ul class="card__list">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg> Cargas progressivas, sem saltos arriscados</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg> Semanas de recuperação previstas no plano</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg> Pico de forma programado para a data alvo</li>
+        </ul>
+        <a class="btn btn--primary btn--block" data-wa data-msg="Olá, Roberto! Quero saber mais sobre o planejamento e a periodização de treinamento." href="#">Quero saber mais</a>
+      </article>
+
+      <article class="card card--feature reveal">
+        <span class="card__flag">Mais completo</span>
+        <div class="card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="1"/></svg></div>
+        <h3>Pacote completo 360</h3>
+        <p class="card__desc">Treino, corrida, periodização e acompanhamento em um único plano, com tudo ajustado em conjunto e um profissional só respondendo por você.</p>
+        <ul class="card__list">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg> Todas as frentes integradas na mesma semana</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg> Contato direto para dúvidas ao longo do plano</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg> Reavaliação periódica com ajuste de rota</li>
+        </ul>
+        <a class="btn btn--wa btn--block" data-wa data-msg="Olá, Roberto! Quero saber mais sobre o pacote completo 360." href="#">Falar pelo WhatsApp</a>
+      </article>
+
+      <article class="card reveal">
+        <div class="card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 6.5v11M17.5 6.5v11M3 9.5v5M21 9.5v5M6.5 12h11"/></svg></div>
+        <h3>Treinamento presencial no Studio 360</h3>
+        <p class="card__desc">Atendimento individual ou em dupla, com correção de execução em tempo real e ambiente reservado, equipado para treino de força e para o trabalho específico de corrida.</p>
+        <ul class="card__list">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg> Acompanhamento presencial em cada série</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg> Horários combinados, sem fila de equipamento</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg> Ideal para quem quer segurança na técnica</li>
+        </ul>
+        <a class="btn btn--primary btn--block" data-wa data-msg="Olá, Roberto! Quero saber mais sobre o treinamento presencial no Studio 360." href="#">Quero saber mais</a>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================ SOBRE ============================ -->
+<section class="section section--dark" id="sobre">
+  <div class="wrap about">
+    <div class="about__media reveal">
+      <img src="assets/roberto-recortado.png" width="680" height="1020" loading="lazy" alt="Roberto Costa, treinador responsável pelo Studio 360.">
+    </div>
+    <div>
+      <p class="eyebrow">Quem vai treinar você</p>
+      <h2>Roberto Costa</h2>
+      <p class="lede" style="margin-bottom:16px">Educador físico — CREF 080194-G/SP — à frente do Studio 360.</p>
+      <p>Sou 360 por não parar de estudar: musculação, treinamento funcional, corrida de rua, trail e preparação para atletas de trekking. Cada modalidade que aprendi virou uma ferramenta a mais para montar o plano de quem chega aqui.</p>
+      <p>Trabalho com pessoas que estão começando do zero, com quem voltou a treinar depois de uma parada longa e com corredores que querem baixar o tempo na próxima prova. O que muda entre eles é o plano — a forma de acompanhar é a mesma: perto, com ajuste constante e sem fórmula pronta.</p>
+      <ul class="creds">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg> Educador físico com registro ativo — CREF 080194-G/SP</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg> Musculação, funcional, corrida de rua, trail e trekking</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg> Atendimento presencial no Studio 360 e online para todo o Brasil</li>
+      </ul>
+      <a class="btn btn--primary" data-wa data-msg="Olá, Roberto! Vi seu site e quero conversar sobre treinar com você." href="#">Conversar com o Roberto</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ DEPOIMENTOS ============================ -->
+<!-- IMPORTANTE: substituir pelos depoimentos reais de alunos, com autorização de uso de nome e foto. -->
+<section class="section section--paper" id="depoimentos">
+  <div class="wrap">
+    <div class="head reveal">
+      <p class="eyebrow">Depoimentos</p>
+      <h2>Quem treina no 360</h2>
+    </div>
+    <div class="quotes">
+      <article class="quote reveal">
+        <div class="quote__stars" aria-label="Avaliação: 5 de 5">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3 6.5 7 .9-5 4.8 1.2 7L12 17.8 5.8 21.2 7 14.2 2 9.4l7-.9z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3 6.5 7 .9-5 4.8 1.2 7L12 17.8 5.8 21.2 7 14.2 2 9.4l7-.9z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3 6.5 7 .9-5 4.8 1.2 7L12 17.8 5.8 21.2 7 14.2 2 9.4l7-.9z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3 6.5 7 .9-5 4.8 1.2 7L12 17.8 5.8 21.2 7 14.2 2 9.4l7-.9z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3 6.5 7 .9-5 4.8 1.2 7L12 17.8 5.8 21.2 7 14.2 2 9.4l7-.9z"/></svg>
+        </div>
+        <p>[Depoimento real do aluno — trocar este texto. Peça ao aluno que conte de onde ele partiu, o que mudou e em quanto tempo.]</p>
+        <div class="quote__who">
+          <img src="imagens/aluno-1.jpg" width="92" height="92" loading="lazy" alt="Foto do aluno">
+          <span><b>Nome do aluno</b><span>Objetivo · tempo de acompanhamento</span></span>
+        </div>
+      </article>
+
+      <article class="quote reveal">
+        <div class="quote__stars" aria-label="Avaliação: 5 de 5">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3 6.5 7 .9-5 4.8 1.2 7L12 17.8 5.8 21.2 7 14.2 2 9.4l7-.9z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3 6.5 7 .9-5 4.8 1.2 7L12 17.8 5.8 21.2 7 14.2 2 9.4l7-.9z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3 6.5 7 .9-5 4.8 1.2 7L12 17.8 5.8 21.2 7 14.2 2 9.4l7-.9z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3 6.5 7 .9-5 4.8 1.2 7L12 17.8 5.8 21.2 7 14.2 2 9.4l7-.9z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3 6.5 7 .9-5 4.8 1.2 7L12 17.8 5.8 21.2 7 14.2 2 9.4l7-.9z"/></svg>
+        </div>
+        <p>[Depoimento real do aluno — trocar este texto. Depoimentos com número dentro, como tempo de prova ou peso, convertem mais.]</p>
+        <div class="quote__who">
+          <img src="imagens/aluno-2.jpg" width="92" height="92" loading="lazy" alt="Foto do aluno">
+          <span><b>Nome do aluno</b><span>Objetivo · tempo de acompanhamento</span></span>
+        </div>
+      </article>
+
+      <article class="quote reveal">
+        <div class="quote__stars" aria-label="Avaliação: 5 de 5">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3 6.5 7 .9-5 4.8 1.2 7L12 17.8 5.8 21.2 7 14.2 2 9.4l7-.9z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3 6.5 7 .9-5 4.8 1.2 7L12 17.8 5.8 21.2 7 14.2 2 9.4l7-.9z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3 6.5 7 .9-5 4.8 1.2 7L12 17.8 5.8 21.2 7 14.2 2 9.4l7-.9z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3 6.5 7 .9-5 4.8 1.2 7L12 17.8 5.8 21.2 7 14.2 2 9.4l7-.9z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3 6.5 7 .9-5 4.8 1.2 7L12 17.8 5.8 21.2 7 14.2 2 9.4l7-.9z"/></svg>
+        </div>
+        <p>[Depoimento real do aluno — trocar este texto. Se tiver print de WhatsApp autorizado, ele também pode entrar aqui como imagem.]</p>
+        <div class="quote__who">
+          <img src="imagens/aluno-3.jpg" width="92" height="92" loading="lazy" alt="Foto do aluno">
+          <span><b>Nome do aluno</b><span>Objetivo · tempo de acompanhamento</span></span>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ STUDIO ============================ -->
+<section class="section section--dark" id="studio">
+  <div class="wrap studio">
+    <div class="reveal">
+      <p class="eyebrow">O Studio</p>
+      <h2>Onde a gente treina</h2>
+      <p class="lede">Espaço reservado, com atendimento por horário marcado. Venha conhecer antes de decidir — a primeira conversa não tem compromisso.</p>
+      <ul class="info">
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7-5.5 7-11a7 7 0 10-14 0c0 5.5 7 11 7 11z"/><circle cx="12" cy="10" r="2.6"/></svg>
+          <div><b>Endereço</b><span>R. Madre Emilie de Villeneuve, 509B — Vila Santa Catarina, São Paulo/SP</span></div>
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg>
+          <div><b>Horários</b><span>Seg e qua a partir das 4h40 · Ter, qui e sex a partir das 5h30 · Sáb 7h às 13h</span></div>
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5.5A1.5 1.5 0 015.5 4h2.2a1.5 1.5 0 011.45 1.1l.8 2.9a1.5 1.5 0 01-.42 1.5l-1.3 1.2a13 13 0 005.07 5.07l1.2-1.3a1.5 1.5 0 011.5-.42l2.9.8A1.5 1.5 0 0120 16.3v2.2a1.5 1.5 0 01-1.5 1.5A15 15 0 014 5.5z"/></svg>
+          <div><b>Atendimento online</b><span>Planos a distância para todo o Brasil</span></div>
+        </li>
+      </ul>
+      <a class="btn btn--wa" data-wa data-msg="Olá, Roberto! Quero agendar uma visita ao Studio 360." href="#">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.25-.46-2.39-1.47-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37s-1.04 1.02-1.04 2.48 1.07 2.88 1.22 3.08c.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.63.71.23 1.36.19 1.87.12.57-.09 1.76-.72 2-1.41.25-.69.25-1.29.17-1.41-.07-.13-.27-.2-.57-.35zM12.05 21.5h-.01a9.42 9.42 0 01-4.8-1.32l-.34-.2-3.57.94.95-3.48-.22-.36a9.39 9.39 0 01-1.44-5.02c0-5.19 4.23-9.42 9.43-9.42a9.35 9.35 0 016.66 2.76 9.33 9.33 0 012.76 6.67c0 5.19-4.23 9.42-9.42 9.42zM20.52 3.48A11.78 11.78 0 0012.05 0C5.5 0 .18 5.32.17 11.87c0 2.09.55 4.13 1.59 5.93L.07 24l6.34-1.66a11.86 11.86 0 005.63 1.44h.01c6.54 0 11.87-5.33 11.87-11.88 0-3.17-1.23-6.15-3.4-8.42z"/></svg>
+        Agendar uma visita
+      </a>
+    </div>
+
+    <div class="studio__map reveal">
+      <!-- Substituir o src abaixo pelo embed do Google Maps do endereço real:
+           Google Maps > Compartilhar > Incorporar um mapa > copiar o valor de src -->
+      <iframe
+        src="https://www.google.com/maps?q=R.+Madre+Emilie+de+Villeneuve,+509B,+Vila+Santa+Catarina,+S%C3%A3o+Paulo&output=embed"
+        loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+        title="Mapa com a localização do Studio 360"></iframe>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ FAQ ============================ -->
+<section class="section section--white" id="faq">
+  <div class="wrap">
+    <div class="head reveal" style="text-align:center; margin-inline:auto">
+      <p class="eyebrow" style="justify-content:center">Perguntas frequentes</p>
+      <h2>Dúvidas antes de começar</h2>
+    </div>
+
+    <div class="faq" id="faqList">
+      <div class="faq__item">
+        <button class="faq__q" aria-expanded="false">Preciso já estar treinando para começar?</button>
+        <div class="faq__a" hidden>Não. Boa parte dos alunos chega sem treinar há meses ou anos. O plano parte do seu nível atual e a progressão é montada para o corpo acompanhar sem sustos.</div>
+      </div>
+      <div class="faq__item">
+        <button class="faq__q" aria-expanded="false">Como funciona o acompanhamento online?</button>
+        <div class="faq__a" hidden>Você recebe o treino no aplicativo, registra o que fez e me envia o feedback da semana. A partir disso eu ajusto a próxima. Dúvidas de execução ou de rotina são tiradas por mensagem ao longo do plano.</div>
+      </div>
+      <div class="faq__item">
+        <button class="faq__q" aria-expanded="false">Em quanto tempo eu vejo resultado?</button>
+        <div class="faq__a" hidden>Depende do ponto de partida e da constância. Em geral, disposição e qualidade do sono mudam nas primeiras semanas; alterações de composição corporal e de desempenho aparecem de forma mais clara a partir do segundo e terceiro mês de trabalho contínuo.</div>
+      </div>
+      <div class="faq__item">
+        <button class="faq__q" aria-expanded="false">Preciso ter academia para treinar?</button>
+        <div class="faq__a" hidden>Não necessariamente. O treino é montado conforme o que você tem à disposição: academia, o Studio 360, condomínio ou até equipamento mínimo em casa.</div>
+      </div>
+      <div class="faq__item">
+        <button class="faq__q" aria-expanded="false">Atendem quem está com dor ou saindo da fisioterapia?</button>
+        <div class="faq__a" hidden>Sim, e é uma das frentes principais do studio. O treino começa no que o corpo aguenta hoje e a progressão respeita a dor. Quando existe acompanhamento de fisioterapeuta ou médico, converso com o profissional antes de montar o plano.</div>
+      </div>
+      <div class="faq__item">
+        <button class="faq__q" aria-expanded="false">Quais são as formas de pagamento?</button>
+        <div class="faq__a" hidden>Pix, cartão de crédito e planos mensais ou trimestrais. Os valores variam conforme o serviço escolhido e são passados na conversa pelo WhatsApp, depois de entender o seu objetivo.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ CTA FINAL ============================ -->
+<section class="section cta">
+  <div class="wrap reveal">
+    <p class="eyebrow" style="justify-content:center; color:#FFE4D3">Próximo passo</p>
+    <h2>Conte seu objetivo. Eu monto o caminho.</h2>
+    <p>Me chame no WhatsApp com o seu objetivo e a sua rotina. Em poucas mensagens eu indico o formato ideal para você — sem compromisso.</p>
+    <a class="btn btn--wa" data-wa data-msg="Olá, Roberto! Vim pelo site e quero começar. Meu objetivo é:" href="#">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.25-.46-2.39-1.47-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37s-1.04 1.02-1.04 2.48 1.07 2.88 1.22 3.08c.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.63.71.23 1.36.19 1.87.12.57-.09 1.76-.72 2-1.41.25-.69.25-1.29.17-1.41-.07-.13-.27-.2-.57-.35zM12.05 21.5h-.01a9.42 9.42 0 01-4.8-1.32l-.34-.2-3.57.94.95-3.48-.22-.36a9.39 9.39 0 01-1.44-5.02c0-5.19 4.23-9.42 9.43-9.42a9.35 9.35 0 016.66 2.76 9.33 9.33 0 012.76 6.67c0 5.19-4.23 9.42-9.42 9.42zM20.52 3.48A11.78 11.78 0 0012.05 0C5.5 0 .18 5.32.17 11.87c0 2.09.55 4.13 1.59 5.93L.07 24l6.34-1.66a11.86 11.86 0 005.63 1.44h.01c6.54 0 11.87-5.33 11.87-11.88 0-3.17-1.23-6.15-3.4-8.42z"/></svg>
+      Falar pelo WhatsApp agora
+    </a>
+  </div>
+</section>
+
+<!-- ============================ FOOTER ============================ -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__grid">
+      <div>
+        <a class="brand" href="#top" style="margin-bottom:14px">
+          <span class="brand__mark" aria-hidden="true">360</span>
+          <span class="brand__txt"><b>Studio 360</b><span>Roberto Costa</span></span>
+        </a>
+        <p style="max-width:34ch">Treino, corrida e volta ao movimento com acompanhamento próximo — presencial no studio ou online.</p>
+        <div class="social">
+          <a href="https://instagram.com/360robertocosta" aria-label="Instagram do Studio 360" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+          </a>
+          <a href="#" data-wa data-msg="Olá, Roberto! Vim pelo site." aria-label="WhatsApp do Studio 360">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.25-.46-2.39-1.47-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37s-1.04 1.02-1.04 2.48 1.07 2.88 1.22 3.08c.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.63.71.23 1.36.19 1.87.12.57-.09 1.76-.72 2-1.41.25-.69.25-1.29.17-1.41-.07-.13-.27-.2-.57-.35zM12.05 21.5h-.01a9.42 9.42 0 01-4.8-1.32l-.34-.2-3.57.94.95-3.48-.22-.36a9.39 9.39 0 01-1.44-5.02c0-5.19 4.23-9.42 9.43-9.42a9.35 9.35 0 016.66 2.76 9.33 9.33 0 012.76 6.67c0 5.19-4.23 9.42-9.42 9.42zM20.52 3.48A11.78 11.78 0 0012.05 0C5.5 0 .18 5.32.17 11.87c0 2.09.55 4.13 1.59 5.93L.07 24l6.34-1.66a11.86 11.86 0 005.63 1.44h.01c6.54 0 11.87-5.33 11.87-11.88 0-3.17-1.23-6.15-3.4-8.42z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div>
+        <h4>Serviços</h4>
+        <ul>
+          <li><a href="#servicos">Treino personalizado</a></li>
+          <li><a href="#servicos">Assessoria de corrida</a></li>
+          <li><a href="#servicos">Reabilitação e volta ao treino</a></li>
+          <li><a href="#servicos">Pacote completo 360</a></li>
+          <li><a href="#servicos">Presencial no studio</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contato</h4>
+        <ul>
+          <li><a href="#" data-wa data-msg="Olá, Roberto! Vim pelo site.">WhatsApp</a></li>
+          <li><a href="mailto:360robertocosta@gmail.com">360robertocosta@gmail.com</a></li>
+          <li><a href="tel:+5511963881413">(11) 96388-1413</a></li>
+          <li>R. Madre Emilie de Villeneuve, 509B — São Paulo/SP</li>
+          <li>Seg a sex a partir das 5h30</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>© <span id="ano"></span> Studio 360 Roberto Costa. Todos os direitos reservados.</span>
+      <span>CNPJ 35.819.777/0001-67 · CREF 080194-G/SP</span>
+    </div>
+  </div>
+</footer>
+
+<a class="wa-float" data-wa data-msg="Olá, Roberto! Vim pelo site e quero saber mais sobre os planos." href="#" aria-label="Falar pelo WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.25-.46-2.39-1.47-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37s-1.04 1.02-1.04 2.48 1.07 2.88 1.22 3.08c.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.63.71.23 1.36.19 1.87.12.57-.09 1.76-.72 2-1.41.25-.69.25-1.29.17-1.41-.07-.13-.27-.2-.57-.35zM12.05 21.5h-.01a9.42 9.42 0 01-4.8-1.32l-.34-.2-3.57.94.95-3.48-.22-.36a9.39 9.39 0 01-1.44-5.02c0-5.19 4.23-9.42 9.43-9.42a9.35 9.35 0 016.66 2.76 9.33 9.33 0 012.76 6.67c0 5.19-4.23 9.42-9.42 9.42zM20.52 3.48A11.78 11.78 0 0012.05 0C5.5 0 .18 5.32.17 11.87c0 2.09.55 4.13 1.59 5.93L.07 24l6.34-1.66a11.86 11.86 0 005.63 1.44h.01c6.54 0 11.87-5.33 11.87-11.88 0-3.17-1.23-6.15-3.4-8.42z"/></svg>
+</a>
+
+<!-- SEO local -->
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"HealthAndBeautyBusiness",
+  "name":"Studio 360 Roberto Costa",
+  "description":"Treinamento personalizado, assessoria de corrida e treino de reabilitação, presencial e online.",
+  "url":"https://www.360robertocosta.com/",
+  "telephone":"+5511963881413",
+  "email":"360robertocosta@gmail.com",
+  "address":{"@type":"PostalAddress","streetAddress":"R. Madre Emilie de Villeneuve, 509B","addressLocality":"São Paulo","addressRegion":"SP","postalCode":"04367-090","addressCountry":"BR"},
+  "openingHours":"Mo,We 04:40-21:00, Tu,Th,Fr 05:30-21:00, Sa 07:00-13:00",
+  "sameAs":["https://instagram.com/360robertocosta","https://www.360robertocosta.com/"]
+}
+</script>
+
+<script>
+/* ============================================================
+   CONFIGURAÇÃO — mude só esta linha para trocar o WhatsApp
+   Formato: 55 + DDD + número, sem espaços ou símbolos.
+   ============================================================ */
+const WHATSAPP = "5511963881413";
+
+/* Monta todos os links de WhatsApp com a mensagem de cada botão */
+document.querySelectorAll("[data-wa]").forEach(function (el) {
+  const msg = el.getAttribute("data-msg") || "Olá, Roberto!";
+  el.href = "https://wa.me/" + WHATSAPP + "?text=" + encodeURIComponent(msg);
+  el.target = "_blank";
+  el.rel = "noopener";
+});
+
+/* Menu mobile */
+const toggle = document.getElementById("navToggle");
+const menu = document.getElementById("menu");
+
+function setMenu(open) {
+  menu.classList.toggle("is-open", open);
+  document.body.classList.toggle("is-locked", open);
+  toggle.setAttribute("aria-expanded", String(open));
+  toggle.setAttribute("aria-label", open ? "Fechar menu" : "Abrir menu");
+}
+
+toggle.addEventListener("click", function () {
+  setMenu(!menu.classList.contains("is-open"));
+});
+
+menu.querySelectorAll("a").forEach(function (a) {
+  a.addEventListener("click", function () { setMenu(false); });
+});
+
+/* Fecha com Esc, ao tocar fora do menu e ao girar o aparelho para a horizontal */
+document.addEventListener("keydown", function (e) {
+  if (e.key === "Escape" && menu.classList.contains("is-open")) { setMenu(false); toggle.focus(); }
+});
+document.addEventListener("click", function (e) {
+  if (!menu.classList.contains("is-open")) return;
+  if (menu.contains(e.target) || toggle.contains(e.target)) return;
+  setMenu(false);
+});
+window.matchMedia("(min-width: 961px)").addEventListener("change", function (e) {
+  if (e.matches) setMenu(false);
+});
+
+/* Sombra no header ao rolar */
+const header = document.getElementById("header");
+const onScroll = function () { header.classList.toggle("is-stuck", window.scrollY > 8); };
+onScroll();
+window.addEventListener("scroll", onScroll, { passive: true });
+
+/* FAQ acordeão (acessível por teclado) */
+document.querySelectorAll(".faq__q").forEach(function (q) {
+  q.addEventListener("click", function () {
+    const open = q.getAttribute("aria-expanded") === "true";
+    document.querySelectorAll(".faq__q").forEach(function (other) {
+      other.setAttribute("aria-expanded", "false");
+      other.nextElementSibling.hidden = true;
+    });
+    if (!open) {
+      q.setAttribute("aria-expanded", "true");
+      q.nextElementSibling.hidden = false;
+    }
+  });
+});
+
+/* Revelar seções ao rolar */
+const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+if (reduce) {
+  document.querySelectorAll(".reveal").forEach(function (el) { el.classList.add("is-visible"); });
+} else {
+  const io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) { e.target.classList.add("is-visible"); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.15, rootMargin: "0px 0px -60px 0px" });
+  document.querySelectorAll(".reveal").forEach(function (el) { io.observe(el); });
+}
+
+/* Ano no rodapé */
+document.getElementById("ano").textContent = new Date().getFullYear();
+</script>
+</body>
+</html>

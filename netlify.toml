@@ -1,0 +1,4 @@
+# Publica apenas a pasta site/. Os documentos comerciais em documentos/ e
+# apresentacao/ ficam fora do deploy de propósito — são material interno.
+[build]
+  publish = "site"

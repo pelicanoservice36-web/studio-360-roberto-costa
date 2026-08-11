@@ -1,0 +1,24 @@
+STUDIO 360 - ROBERTO COSTA
+Pacote completo do projeto
+
+/site
+  index.html ......... Landing page (dados reais ja preenchidos)
+  diagnostico.html ... Apresentacao de diagnostico (11 slides)
+  plano.html ......... Plano de Google Meu Negocio e conteudo
+  >> Para publicar: compacte esta pasta em .zip e arraste em
+     app.netlify.com/projects/studio360-roberto-costa-demo
+     Site ID: 93165992-5b1c-460a-9f6d-775849378f48
+
+/documentos
+  proposta-studio360.md ............. Proposta comercial e pacotes
+  plano-gmn-conteudo-studio360.md ... Plano de conteudo (versao texto)
+  COMO-PUBLICAR.md .................. Guia de personalizacao e publicacao
+
+/apresentacao
+  diagnostico-studio360.pptx ........ Mesma apresentacao em PowerPoint
+
+PENDENTE
+  - Fotos reais (criar pasta /site/imagens)
+  - Depoimentos reais e autorizados
+  - Secao de reabilitacao na landing
+  - Remover a linha <meta name="robots" content="noindex"> quando for oficial

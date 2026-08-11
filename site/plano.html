@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex, nofollow">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Plano de Google Meu Negócio e Conteúdo — Studio 360° Roberto Costa</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Barlow:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0B1220; --ink2:#16202F; --ink3:#243349;
+  --orange:#EA580C; --orange-hi:#F97316; --orange-d:#C2410C;
+  --green:#10B981; --green-d:#047857; --red:#E11D48; --slate:#64748B;
+  --paper:#F5F7FA; --white:#fff; --fg:#0F172A; --gray:#5B6779; --gray-l:#9AA6B6;
+  --line:#E2E8F0;
+  --H:"Barlow Condensed", Arial, sans-serif;
+  --B:"Barlow", system-ui, -apple-system, sans-serif;
+  --r:14px;
+  --shadow:0 1px 2px rgba(15,23,42,.05), 0 10px 26px -14px rgba(15,23,42,.22);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--fg);font-family:var(--B);
+  font-size:17px;line-height:1.6;overflow-x:hidden}
+img{max-width:100%}
+h1,h2,h3,h4{font-family:var(--H);font-weight:700;line-height:1.05;margin:0}
+h1{font-size:clamp(2.3rem,6vw,3.9rem);text-transform:uppercase}
+h2{font-size:clamp(1.8rem,4.4vw,2.7rem)}
+h3{font-size:clamp(1.2rem,2.6vw,1.5rem)}
+p{margin:0}
+a{color:inherit}
+.wrap{width:100%;max-width:1060px;margin-inline:auto;padding-inline:20px}
+section{padding-block:clamp(44px,6vw,76px)}
+.dark{background:var(--ink);color:#F8FAFC}
+.dark p{color:#9FB0C4}
+.white{background:var(--white)}
+
+.eyebrow{font-family:var(--H);font-weight:700;letter-spacing:.18em;font-size:.85rem;
+  text-transform:uppercase;color:var(--orange);display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.eyebrow::before{content:"";width:24px;height:2px;background:currentColor;flex:none}
+.dark .eyebrow{color:var(--orange-hi)}
+.lede{color:var(--gray);max-width:66ch;margin-top:14px}
+.dark .lede{color:#9FB0C4}
+.head{margin-bottom:clamp(26px,3.5vw,44px)}
+
+/* ---------- capa ---------- */
+.hero{background:var(--ink);color:#fff;position:relative;overflow:hidden;
+  padding-block:clamp(56px,8vw,96px)}
+.hero::before{content:"";position:absolute;inset:0;
+  background:radial-gradient(700px 420px at 82% 12%,rgba(234,88,12,.20),transparent 62%),
+             radial-gradient(560px 380px at 6% 96%,rgba(16,185,129,.12),transparent 60%)}
+.hero .wrap{position:relative}
+.hero h1{margin-bottom:18px}
+.hero h1 em{font-style:normal;color:var(--orange-hi)}
+.hero .sub{font-size:1.15rem;color:#9FB0C4;max-width:56ch}
+.meta{display:flex;flex-wrap:wrap;gap:10px;margin-top:30px}
+.chip{display:inline-flex;align-items:center;gap:8px;padding:8px 15px;border-radius:99px;
+  border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.03);
+  font-family:var(--H);font-weight:600;letter-spacing:.08em;text-transform:uppercase;
+  font-size:.82rem;color:#9FB0C4}
+
+/* ---------- nav ---------- */
+.nav{position:sticky;top:0;z-index:40;background:rgba(11,18,32,.95);
+  backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,.08)}
+.nav .wrap{display:flex;gap:18px;overflow-x:auto;padding-block:12px;scrollbar-width:none}
+.nav .wrap::-webkit-scrollbar{display:none}
+.nav a{font-family:var(--H);font-weight:600;text-transform:uppercase;letter-spacing:.09em;
+  font-size:.92rem;color:#9FB0C4;white-space:nowrap;text-decoration:none;transition:color .2s}
+.nav a:hover{color:var(--orange-hi)}
+
+/* ---------- blocos ---------- */
+.card{background:var(--white);border:1px solid var(--line);border-radius:var(--r);
+  padding:clamp(18px,2.4vw,28px);box-shadow:var(--shadow)}
+.dark .card{background:var(--ink2);border-color:var(--ink3);box-shadow:none}
+.grid{display:grid;gap:clamp(14px,1.8vw,22px)}
+.g2{grid-template-columns:repeat(2,1fr)}
+.g3{grid-template-columns:repeat(3,1fr)}
+.g4{grid-template-columns:repeat(4,1fr)}
+@media (max-width:860px){.g3,.g4{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:600px){.g2,.g3,.g4{grid-template-columns:1fr}}
+
+.tagline{display:inline-block;padding:5px 13px;border-radius:99px;color:#fff;
+  font-family:var(--H);font-weight:700;font-size:.76rem;letter-spacing:.13em;text-transform:uppercase}
+
+/* auditoria */
+.audit{display:grid;gap:8px}
+.audit .r{display:grid;grid-template-columns:170px 1fr auto;gap:14px;align-items:center;
+  background:#fff;border:1px solid var(--line);border-radius:11px;padding:13px 18px}
+.audit .k{font-family:var(--H);font-weight:700;font-size:1.08rem}
+.audit .v{font-size:.95rem;color:var(--gray);line-height:1.35}
+.audit .r.warn{border-color:#F7C7A8;background:#FFF9F5}
+.audit .r.bad{border-color:#F5C2C7;background:#FFF7F8}
+@media (max-width:700px){
+  .audit .r{grid-template-columns:1fr;gap:6px;padding:14px 16px}
+  .audit .r .tagline{justify-self:start}
+}
+
+/* gráfico de barras */
+.bars{display:grid;gap:16px}
+.bar{display:grid;grid-template-columns:190px 1fr;gap:14px;align-items:center}
+.bar .who{font-family:var(--H);font-weight:700;font-size:1.05rem;line-height:1.15}
+.bar .who small{display:block;font-family:var(--B);font-weight:400;font-size:.78rem;
+  color:var(--gray-l);letter-spacing:0;text-transform:none;margin-top:2px}
+.bar .track{background:rgba(255,255,255,.06);border-radius:99px;height:34px;position:relative;overflow:hidden}
+.bar .fill{height:100%;border-radius:99px;background:var(--ink3);display:flex;align-items:center;
+  justify-content:flex-end;padding-right:12px;font-family:var(--H);font-weight:700;color:#fff;
+  font-size:1rem;min-width:44px}
+.bar.me .fill{background:linear-gradient(90deg,var(--orange-d),var(--orange-hi))}
+@media (max-width:640px){
+  .bar{grid-template-columns:1fr;gap:6px}
+  .bar .track{height:30px}
+}
+
+/* números destaque */
+.stat b{display:block;font-family:var(--H);font-weight:700;font-size:clamp(2.6rem,7vw,3.6rem);
+  line-height:.9;color:var(--orange-hi);margin-bottom:8px}
+.stat strong{display:block;font-size:1.02rem;color:#fff;margin-bottom:4px}
+.stat p{font-size:.9rem}
+
+/* listas */
+ul.clean{list-style:none;margin:0;padding:0;display:grid;gap:11px}
+ul.clean li{display:flex;gap:11px;align-items:flex-start;font-size:1rem;line-height:1.45}
+ul.clean li::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--orange);
+  flex:none;margin-top:9px}
+.dark ul.clean li{color:#C7D2DF}
+
+/* checklist interativo */
+.check{list-style:none;margin:0;padding:0;display:grid;gap:9px}
+.check li{display:flex;gap:12px;align-items:flex-start;background:#fff;border:1px solid var(--line);
+  border-radius:11px;padding:13px 16px;cursor:pointer;transition:.18s;font-size:1rem}
+.check li:hover{border-color:#C3CCD8}
+.check li.done{background:#F0FDF7;border-color:#A7E8CE}
+.check li.done .txt{text-decoration:line-through;color:var(--gray-l)}
+.box{width:22px;height:22px;border-radius:6px;border:2px solid #C3CCD8;flex:none;margin-top:2px;
+  display:grid;place-items:center;transition:.18s}
+.check li.done .box{background:var(--green);border-color:var(--green)}
+.box::after{content:"";width:10px;height:5px;border-left:2px solid #fff;border-bottom:2px solid #fff;
+  transform:rotate(-45deg) translateY(-1px);opacity:0;transition:.18s}
+.check li.done .box::after{opacity:1}
+.progress{margin-top:16px;font-family:var(--H);font-weight:700;letter-spacing:.1em;
+  text-transform:uppercase;font-size:.86rem;color:var(--gray)}
+
+/* pilares */
+.pillar{border-left:4px solid var(--orange);padding-left:18px}
+.pillar .n{font-family:var(--H);font-weight:700;font-size:.8rem;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--orange);display:block;margin-bottom:6px}
+
+/* rodízio semanal */
+.week{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+@media (max-width:700px){.week{grid-template-columns:1fr}}
+.day{border-top:4px solid var(--orange);border-radius:0 0 var(--r) var(--r);background:#fff;
+  border-inline:1px solid var(--line);border-bottom:1px solid var(--line);padding:22px}
+.day:nth-child(2){border-top-color:var(--green)}
+.day:nth-child(3){border-top-color:var(--ink3)}
+.day .d{font-family:var(--H);font-weight:700;letter-spacing:.15em;text-transform:uppercase;
+  font-size:.8rem;color:var(--gray-l);margin-bottom:8px}
+
+/* pautas */
+.pautas{counter-reset:p;display:grid;gap:10px}
+.pauta{counter-increment:p;display:grid;grid-template-columns:44px 1fr;gap:14px;align-items:center;
+  background:#fff;border:1px solid var(--line);border-radius:11px;padding:14px 18px;font-size:1rem}
+.pauta::before{content:counter(p,decimal-leading-zero);font-family:var(--H);font-weight:700;
+  font-size:1.15rem;color:#B4BECC}
+
+/* linha do tempo */
+.tl{display:grid;gap:0}
+.tl .m{display:grid;grid-template-columns:130px 1fr;gap:22px;padding:26px 0;
+  border-top:1px solid rgba(255,255,255,.1)}
+.tl .m:first-child{border-top:0}
+.tl .mn{font-family:var(--H);font-weight:700;font-size:1.5rem;color:var(--orange-hi);line-height:1.1}
+.tl .mn small{display:block;font-family:var(--B);font-weight:400;font-size:.82rem;
+  color:#9FB0C4;margin-top:4px}
+.goal{display:inline-block;margin-top:12px;padding:6px 14px;border-radius:99px;
+  border:1px solid var(--ink3);font-family:var(--H);font-weight:700;font-size:.82rem;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--green)}
+@media (max-width:640px){.tl .m{grid-template-columns:1fr;gap:10px}}
+
+/* preços */
+.price{display:flex;flex-direction:column}
+.price .v{font-family:var(--H);font-weight:700;font-size:2.1rem;color:var(--fg);margin:6px 0 14px}
+.price.hi{border-color:var(--orange);border-width:2px}
+.price .flag{align-self:flex-start;background:var(--orange);color:#fff;padding:4px 12px;
+  border-radius:99px;font-family:var(--H);font-weight:700;font-size:.72rem;letter-spacing:.12em;
+  text-transform:uppercase;margin-bottom:10px}
+
+/* avisos */
+.warn{display:grid;grid-template-columns:40px 1fr;gap:16px;background:#FFF9F5;
+  border:1px solid #F7C7A8;border-radius:var(--r);padding:20px}
+.warn .i{width:32px;height:32px;border-radius:50%;background:var(--orange);color:#fff;
+  display:grid;place-items:center;font-family:var(--H);font-weight:700;font-size:1.1rem}
+.warn h4{font-size:1.15rem;margin-bottom:6px}
+.warn p{font-size:.96rem;color:var(--gray)}
+
+footer{background:var(--ink);color:#6C788A;padding-block:34px;font-size:.88rem;text-align:center}
+
+@media print{
+  .nav{display:none}
+  body{background:#fff}
+  section{break-inside:avoid;padding-block:24px}
+  .card,.day,.pauta,.audit .r{box-shadow:none}
+}
+</style>
+</head>
+<body>
+
+<!-- CAPA -->
+<header class="hero">
+  <div class="wrap">
+    <p class="eyebrow">Plano de crescimento local</p>
+    <h1>Google Meu Negócio<br><em>e motor de conteúdo</em></h1>
+    <p class="sub">Studio 360° Personal Trainer e Nutrição — Vila Santa Catarina, São Paulo. Auditoria da ficha, leitura da concorrência, posicionamento e rotina de conteúdo para os próximos 90 dias.</p>
+    <div class="meta">
+      <span class="chip">Nota 5,0</span>
+      <span class="chip">63 avaliações</span>
+      <span class="chip">3º em volume no bairro</span>
+      <span class="chip">Agosto de 2026</span>
+    </div>
+  </div>
+</header>
+
+<nav class="nav">
+  <div class="wrap">
+    <a href="#auditoria">Auditoria</a>
+    <a href="#concorrencia">Concorrência</a>
+    <a href="#posicionamento">Posicionamento</a>
+    <a href="#ficha">Arrumar a ficha</a>
+    <a href="#conteudo">Conteúdo</a>
+    <a href="#pautas">Pautas</a>
+    <a href="#avaliacoes">Avaliações</a>
+    <a href="#noventa">90 dias</a>
+    <a href="#metricas">Métricas</a>
+    <a href="#pacotes">Pacotes</a>
+    <a href="#cuidados">Cuidados</a>
+  </div>
+</nav>
+
+<!-- AUDITORIA -->
+<section id="auditoria" class="white">
+  <div class="wrap">
+    <div class="head">
+      <p class="eyebrow">Parte 1</p>
+      <h2>O que dá para verificar por fora</h2>
+      <p class="lede">Parte da ficha só aparece de dentro do painel. O que está abaixo veio de dados públicos — o que precisa ser confirmado com o Roberto está marcado. Chegar afirmando o que não se viu é o jeito mais rápido de perder credibilidade.</p>
+    </div>
+
+    <div class="audit">
+      <div class="r"><span class="k">Nome</span><span class="v">Studio 360° Personal Trainer e Nutrição</span><span class="tagline" style="background:var(--green-d)">Confirmado</span></div>
+      <div class="r"><span class="k">Endereço</span><span class="v">R. Madre Emilie de Villeneuve, 509B — Vila Santa Catarina</span><span class="tagline" style="background:var(--green-d)">Confirmado</span></div>
+      <div class="r"><span class="k">Telefone</span><span class="v">(11) 96388-1413 — bate com o site</span><span class="tagline" style="background:var(--green-d)">Confirmado</span></div>
+      <div class="r"><span class="k">Nota e avaliações</span><span class="v">5,0 com 63 avaliações</span><span class="tagline" style="background:var(--green-d)">Confirmado</span></div>
+      <div class="r bad"><span class="k">Horários</span><span class="v">Seg e qua 4h40–21h · ter, qui e sex 5h30–21h · sáb 7h–13h · dom 7h–9h. Conflita com o que o site anuncia.</span><span class="tagline" style="background:var(--red)">Conflito</span></div>
+      <div class="r bad"><span class="k">Categorias</span><span class="v">Retorna tipos de consultoria, comércio e alimentos. Nenhum tipo de academia, personal trainer ou esporte.</span><span class="tagline" style="background:var(--red)">Ver no painel</span></div>
+      <div class="r warn"><span class="k">Serviços</span><span class="v">Nada indica serviços declarados na ficha</span><span class="tagline" style="background:var(--orange-d)">Verificar</span></div>
+      <div class="r warn"><span class="k">Postagens</span><span class="v">Nenhuma aparente</span><span class="tagline" style="background:var(--orange-d)">Verificar</span></div>
+      <div class="r warn"><span class="k">Perguntas</span><span class="v">Nenhuma pergunta ou resposta aparente</span><span class="tagline" style="background:var(--orange-d)">Verificar</span></div>
+      <div class="r bad"><span class="k">Link do site</span><span class="v">Aponta para o site com endereço desatualizado</span><span class="tagline" style="background:var(--red)">Corrigir</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONCORRÊNCIA -->
+<section id="concorrencia" class="dark">
+  <div class="wrap">
+    <div class="head">
+      <p class="eyebrow">Parte 2</p>
+      <h2>O benchmark que muda a conversa</h2>
+      <p class="lede">Todos os concorrentes próximos têm nota 5,0. Como a nota empata, o desempate no mapa passa a ser volume, recência e completude da ficha.</p>
+    </div>
+
+    <div class="bars" style="margin-bottom:38px">
+      <div class="bar"><span class="who">FitClass Vila Mascote<small>classificada como academia</small></span>
+        <span class="track"><span class="fill" style="width:100%">161</span></span></div>
+      <div class="bar"><span class="who">Studio Personal Tom<small>classificado como centro de fitness</small></span>
+        <span class="track"><span class="fill" style="width:60%">96</span></span></div>
+      <div class="bar me"><span class="who">Studio 360° Roberto Costa<small>classificado como consultoria e alimentos</small></span>
+        <span class="track"><span class="fill" style="width:39%">63</span></span></div>
+      <div class="bar"><span class="who">Estúdio Alana Mesquita<small>serviço, saúde</small></span>
+        <span class="track"><span class="fill" style="width:24%">38</span></span></div>
+      <div class="bar"><span class="who">Cris Nascimento<small>serviço, saúde</small></span>
+        <span class="track"><span class="fill" style="width:13%">20</span></span></div>
+      <div class="bar"><span class="who">Cristiano Mitsudo<small>serviço, saúde</small></span>
+        <span class="track"><span class="fill" style="width:6%">3</span></span></div>
+    </div>
+
+    <div class="grid g3">
+      <div class="card">
+        <h3 style="margin-bottom:10px">Terceiro em volume</h3>
+        <p>Empatado em nota com todos. A diferença de 63 para 96 se fecha em cerca de quatro meses com uma rotina simples de pedido de avaliação.</p>
+      </div>
+      <div class="card" style="border-color:var(--orange)">
+        <h3 style="margin-bottom:10px;color:var(--orange-hi)">Único fora da categoria</h3>
+        <p>Enquanto os concorrentes aparecem como academia e centro de fitness, a ficha dele está entre consultoria e comércio de alimentos. É o que decide se ele entra ou não no bloco de mapas.</p>
+      </div>
+      <div class="card">
+        <h3 style="margin-bottom:10px">Uma janela fechando</h3>
+        <p>Um concorrente com apenas 3 avaliações tem como destaque um caso de volta à corrida com condropatia. Alguém já ocupa o território de "correr apesar da lesão" com vinte vezes menos prova social.</p>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:22px;border-color:var(--ink3)">
+      <p><strong style="color:#fff">Detalhe revelador:</strong> existe na região um negócio cadastrado como "Personal Trainer Para Idosos". Três avaliações, e aparece nas buscas porque o nome diz exatamente o que a pessoa procura. Não é para copiar o truque — é para entender que, no Google local, quem nomeia o problema ganha a busca.</p>
+    </div>
+  </div>
+</section>
+
+<!-- POSICIONAMENTO -->
+<section id="posicionamento" class="white">
+  <div class="wrap">
+    <div class="head">
+      <p class="eyebrow">Parte 3</p>
+      <h2>O buraco de mercado</h2>
+      <p class="lede">Procurando assessoria de corrida na zona sul, tudo o que aparece está na Vila Mariana, Brooklin, Jardins e Butantã. Nenhuma com base na Vila Santa Catarina, Vila Mascote ou Jabaquara. E os horários dele já contam essa história: segunda e quarta abrindo às 4h40 é grupo de corrida, não academia.</p>
+    </div>
+
+    <div class="card" style="background:var(--ink);border-color:var(--ink);text-align:center;padding:clamp(28px,5vw,52px)">
+      <p class="eyebrow" style="justify-content:center;color:var(--orange-hi)">Posicionamento recomendado</p>
+      <h3 style="font-size:clamp(1.5rem,3.6vw,2.2rem);color:#fff;line-height:1.2;max-width:24ch;margin-inline:auto">
+        O studio de quem tem dor ou limitação e não quer parar — e o único treino de corrida com base na Vila Santa Catarina.
+      </h3>
+    </div>
+
+    <div class="grid g2" style="margin-top:22px">
+      <div class="card">
+        <span class="tagline" style="background:var(--orange-d)">Frente 1</span>
+        <h3 style="margin:12px 0 8px">Dor, lesão e limitação</h3>
+        <p style="color:var(--gray)">Alta margem, alta intenção de busca e concorrência local quase nula. As avaliações dele já comprovam: bursite de quadril, saída de atrofia, obesidade até a normalidade.</p>
+      </div>
+      <div class="card">
+        <span class="tagline" style="background:var(--green-d)">Frente 2</span>
+        <h3 style="margin:12px 0 8px">Corrida do bairro</h3>
+        <p style="color:var(--gray)">Comunidade, recorrência e conteúdo natural. Ocupa um vazio geográfico real e alimenta o pilar 1 com histórias de quem voltou a correr.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FICHA -->
+<section id="ficha" class="dark">
+  <div class="wrap">
+    <div class="head">
+      <p class="eyebrow">Parte 4</p>
+      <h2>Arrumar a ficha nesta semana</h2>
+      <p class="lede">Toque nos itens para marcar o que já foi feito.</p>
+    </div>
+
+    <div class="grid g2" style="margin-bottom:26px">
+      <div class="card">
+        <h3 style="margin-bottom:12px">Categorias</h3>
+        <p style="margin-bottom:12px"><strong style="color:var(--orange-hi)">Principal:</strong> Personal trainer</p>
+        <p><strong style="color:#fff">Secundárias:</strong> Academia · Centro de fitness · Treinador de atletismo · Nutricionista, apenas se houver profissional com CRN no negócio</p>
+      </div>
+      <div class="card">
+        <h3 style="margin-bottom:12px">Serviços a cadastrar</h3>
+        <p style="margin-bottom:12px">Cada serviço aceita descrição própria — é espaço de palavra-chave que quase ninguém usa.</p>
+        <ul class="clean" style="gap:7px">
+          <li>Treinamento personalizado presencial</li>
+          <li>Treino para dor, lesão e pós-fisioterapia</li>
+          <li>Assessoria e planejamento de corrida</li>
+          <li>Treino online pelo aplicativo</li>
+          <li>Nutrição esportiva</li>
+          <li>Periodização para provas</li>
+          <li>Pacote completo 360</li>
+          <li>Treino para 60+</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card" style="background:#fff;border-color:var(--line)">
+      <h3 style="margin-bottom:16px;color:var(--fg)">Checklist da semana</h3>
+      <ul class="check" id="checklist">
+        <li><span class="box"></span><span class="txt">Trocar a categoria principal para Personal trainer</span></li>
+        <li><span class="box"></span><span class="txt">Adicionar as quatro categorias secundárias</span></li>
+        <li><span class="box"></span><span class="txt">Cadastrar os oito serviços com descrição própria</span></li>
+        <li><span class="box"></span><span class="txt">Unificar endereço e horários entre Google e site</span></li>
+        <li><span class="box"></span><span class="txt">Subir 20 fotos: fachada com número, recepção, cada área, atendimento, grupo de corrida</span></li>
+        <li><span class="box"></span><span class="txt">Marcar atributos: agendamento, atendimento online, acessibilidade, estacionamento</span></li>
+        <li><span class="box"></span><span class="txt">Publicar e responder as oito perguntas frequentes</span></li>
+        <li><span class="box"></span><span class="txt">Instalar o QR code de avaliação na recepção</span></li>
+        <li><span class="box"></span><span class="txt">Publicar as três primeiras postagens da semana</span></li>
+      </ul>
+      <p class="progress" id="progress"></p>
+    </div>
+
+    <div class="card" style="margin-top:22px">
+      <h3 style="margin-bottom:8px">As oito perguntas para semear</h3>
+      <p style="margin-bottom:16px">O próprio dono pode publicar perguntas e respondê-las — e quase ninguém faz.</p>
+      <div class="grid g2">
+        <ul class="clean">
+          <li>Atendem quem está com dor ou saindo de fisioterapia?</li>
+          <li>Precisa já treinar para começar?</li>
+          <li>Tem treino para quem quer correr a primeira prova?</li>
+          <li>Tem acompanhamento online para quem viaja muito?</li>
+        </ul>
+        <ul class="clean">
+          <li>Como funciona a parte de nutrição?</li>
+          <li>Tem horário antes das 6h?</li>
+          <li>Onde fica exatamente e tem onde estacionar?</li>
+          <li>Atende pessoas acima de 60 anos?</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTEÚDO -->
+<section id="conteudo" class="white">
+  <div class="wrap">
+    <div class="head">
+      <p class="eyebrow">Parte 5</p>
+      <h2>O motor de conteúdo</h2>
+      <p class="lede">Tudo o que for produzido cai em um destes quatro pilares. Fora deles, não produz.</p>
+    </div>
+
+    <div class="grid g2" style="margin-bottom:44px">
+      <div class="card pillar"><span class="n">Pilar 1</span><h3>Voltar a se mover</h3>
+        <p style="color:var(--gray);margin-top:8px">Dor, lesão, pós-fisioterapia, limitação, 60+. É o diferencial que as avaliações já comprovam e ninguém na região reivindica.</p></div>
+      <div class="card pillar" style="border-color:var(--green)"><span class="n" style="color:var(--green-d)">Pilar 2</span><h3>Corrida do bairro</h3>
+        <p style="color:var(--gray);margin-top:8px">Provas, ritmo, treino de força para corredor, rotas da região. Ocupa o vazio de assessoria local e gera comunidade.</p></div>
+      <div class="card pillar" style="border-color:var(--slate)"><span class="n" style="color:var(--slate)">Pilar 3</span><h3>Nutrição que cabe na rotina</h3>
+        <p style="color:var(--gray);margin-top:8px">Comida de verdade, antes e depois do treino. Justifica o "e Nutrição" que está no nome da ficha.</p></div>
+      <div class="card pillar" style="border-color:var(--ink3)"><span class="n" style="color:var(--ink3)">Pilar 4</span><h3>Bastidor e prova</h3>
+        <p style="color:var(--gray);margin-top:8px">Alunos, rotina do studio, resultados autorizados. Alimenta fotos, avaliações e confiança.</p></div>
+    </div>
+
+    <h3 style="margin-bottom:8px">Três postagens por semana, em rodízio fixo</h3>
+    <p class="lede" style="margin-bottom:24px">Poucos negócios locais postam ali, e postagem recente é sinal de atividade. Cada uma: uma foto própria, 150 a 300 caracteres, um botão de ação e o bairro citado no texto.</p>
+    <div class="week">
+      <div class="day"><p class="d">Segunda</p><h3>Bastidor</h3>
+        <p style="color:var(--gray);margin-top:8px">Foto do grupo das 4h40 com uma frase sobre a semana que começa.</p></div>
+      <div class="day"><p class="d">Quarta</p><h3>Educativo</h3>
+        <p style="color:var(--gray);margin-top:8px">"Dor no quadril ao correr: o que dá para fazer antes de parar."</p></div>
+      <div class="day"><p class="d">Sexta</p><h3>Convite</h3>
+        <p style="color:var(--gray);margin-top:8px">"Avaliação sem compromisso — agende pelo WhatsApp", com botão de ação.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- PAUTAS -->
+<section id="pautas" class="dark">
+  <div class="wrap">
+    <div class="head">
+      <p class="eyebrow">Parte 6</p>
+      <h2>Doze pautas prontas</h2>
+      <p class="lede">Cada uma serve como postagem, vídeo curto, artigo ou tudo junto — e casa um serviço com um termo de busca local.</p>
+    </div>
+    <div class="pautas">
+      <div class="pauta" style="background:var(--ink2);border-color:var(--ink3);color:#E6ECF3">Voltei a correr depois da lesão: por onde começar</div>
+      <div class="pauta" style="background:var(--ink2);border-color:var(--ink3);color:#E6ECF3">Bursite no quadril — os erros que pioram e o que ajuda</div>
+      <div class="pauta" style="background:var(--ink2);border-color:var(--ink3);color:#E6ECF3">Treino de força para corredor: o que muda no seu tempo</div>
+      <div class="pauta" style="background:var(--ink2);border-color:var(--ink3);color:#E6ECF3">Primeira corrida de 5 km: plano de 8 semanas</div>
+      <div class="pauta" style="background:var(--ink2);border-color:var(--ink3);color:#E6ECF3">Como treinar às 5 da manhã sem odiar a vida</div>
+      <div class="pauta" style="background:var(--ink2);border-color:var(--ink3);color:#E6ECF3">Rotas para correr na Vila Santa Catarina e no Jabaquara</div>
+      <div class="pauta" style="background:var(--ink2);border-color:var(--ink3);color:#E6ECF3">O que comer antes do treino da manhã</div>
+      <div class="pauta" style="background:var(--ink2);border-color:var(--ink3);color:#E6ECF3">Suplemento resolve? O que realmente muda o resultado</div>
+      <div class="pauta" style="background:var(--ink2);border-color:var(--ink3);color:#E6ECF3">Personal trainer ou academia: como escolher aos 50</div>
+      <div class="pauta" style="background:var(--ink2);border-color:var(--ink3);color:#E6ECF3">Treino depois da alta da fisioterapia — a ponte que quase ninguém faz</div>
+      <div class="pauta" style="background:var(--ink2);border-color:var(--ink3);color:#E6ECF3">Periodização explicada sem termo técnico</div>
+      <div class="pauta" style="background:var(--ink2);border-color:var(--ink3);color:#E6ECF3">Um dia no Studio 360: como funciona o acompanhamento</div>
+    </div>
+  </div>
+</section>
+
+<!-- AVALIAÇÕES -->
+<section id="avaliacoes" class="white">
+  <div class="wrap">
+    <div class="head">
+      <p class="eyebrow">Parte 7</p>
+      <h2>Avaliações: a alavanca mais barata</h2>
+      <p class="lede">Meta de 8 novas por mês. Em seis meses ele passa o Studio Personal Tom e encosta na FitClass, com uma vantagem que nenhum dos dois tem: profundidade de caso.</p>
+    </div>
+    <div class="grid g4">
+      <div class="card"><h3 style="margin-bottom:8px">QR na recepção</h3><p style="color:var(--gray)">Impresso e apontando direto para o formulário de avaliação, sem etapa intermediária.</p></div>
+      <div class="card"><h3 style="margin-bottom:8px">Momento certo</h3><p style="color:var(--gray)">Logo depois de uma conquista do aluno, nunca no fim do mês por obrigação.</p></div>
+      <div class="card"><h3 style="margin-bottom:8px">Roteiro do pedido</h3><p style="color:var(--gray)">"Conta de onde você partiu, o que mudou e em quanto tempo." Avaliação com número dentro converte muito mais.</p></div>
+      <div class="card"><h3 style="margin-bottom:8px">Responder todas</h3><p style="color:var(--gray)">Cem por cento delas, citando serviço e bairro no texto da resposta.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 90 DIAS -->
+<section id="noventa" class="dark">
+  <div class="wrap">
+    <div class="head">
+      <p class="eyebrow">Parte 8</p>
+      <h2>Calendário de 90 dias</h2>
+    </div>
+    <div class="tl">
+      <div class="m">
+        <div class="mn">Mês 1<small>Fundação</small></div>
+        <div>
+          <ul class="clean">
+            <li>Categoria e serviços corrigidos</li>
+            <li>20 fotos no ar e endereço unificado com o site</li>
+            <li>Oito perguntas semeadas e respondidas</li>
+            <li>Primeiras três postagens semanais e QR de avaliação instalado</li>
+          </ul>
+          <span class="goal">Meta: +8 avaliações</span>
+        </div>
+      </div>
+      <div class="m">
+        <div class="mn">Mês 2<small>Autoridade</small></div>
+        <div>
+          <ul class="clean">
+            <li>Landing page no ar com seção de reabilitação</li>
+            <li>Quatro pautas produzidas</li>
+            <li>Primeiro conteúdo de corrida com nome do bairro</li>
+            <li>Medição instalada</li>
+          </ul>
+          <span class="goal">Meta: +8 avaliações e primeiro relatório de cliques</span>
+        </div>
+      </div>
+      <div class="m">
+        <div class="mn">Mês 3<small>Tração</small></div>
+        <div>
+          <ul class="clean">
+            <li>Rotina de conteúdo rodando sozinha</li>
+            <li>Análise do que efetivamente trouxe contato</li>
+            <li>Ajuste de pauta pelo que funcionou</li>
+            <li>Teste de anúncio local em raio de três quilômetros</li>
+          </ul>
+          <span class="goal">Meta: passar de 85 avaliações</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MÉTRICAS -->
+<section id="metricas" class="white">
+  <div class="wrap">
+    <div class="head">
+      <p class="eyebrow">Parte 9</p>
+      <h2>Cinco números por mês</h2>
+      <p class="lede">Nada além disso, ou vira relatório que ninguém lê.</p>
+    </div>
+    <div class="grid g3">
+      <div class="card"><h3>Aparições</h3><p style="color:var(--gray);margin-top:8px">Quantas vezes a ficha apareceu, separando busca por nome e busca por categoria.</p></div>
+      <div class="card"><h3>Cliques</h3><p style="color:var(--gray);margin-top:8px">No site e em "como chegar".</p></div>
+      <div class="card"><h3>Contatos</h3><p style="color:var(--gray);margin-top:8px">Ligações e cliques no WhatsApp vindos da ficha.</p></div>
+      <div class="card"><h3>Avaliações novas</h3><p style="color:var(--gray);margin-top:8px">Contra a meta de oito no mês.</p></div>
+      <div class="card" style="border-color:var(--orange)"><h3 style="color:var(--orange)">Termos de busca</h3><p style="color:var(--gray);margin-top:8px">É daqui que sai a pauta do mês seguinte. O número mais útil dos cinco.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- PACOTES -->
+<section id="pacotes" class="dark">
+  <div class="wrap">
+    <div class="head">
+      <p class="eyebrow">Parte 10</p>
+      <h2>Como isso vira receita recorrente</h2>
+      <p class="lede">O argumento: ele não precisa de mais reputação, precisa de frequência. Uma ficha que publica toda semana e recebe avaliação toda semana sobe. Uma ficha parada, por melhor que seja a nota, desce.</p>
+    </div>
+    <div class="grid g3">
+      <div class="card price">
+        <h3>Ficha viva</h3>
+        <span class="v" style="color:#fff">R$ 490<span style="font-size:1rem;color:#9FB0C4">/mês</span></span>
+        <ul class="clean" style="gap:8px">
+          <li>12 postagens no mês</li>
+          <li>5 fotos novas</li>
+          <li>Respostas a todas as avaliações</li>
+          <li>Relatório mensal</li>
+        </ul>
+      </div>
+      <div class="card price hi">
+        <span class="flag">Recomendado</span>
+        <h3>Ficha + conteúdo</h3>
+        <span class="v" style="color:#fff">R$ 890<span style="font-size:1rem;color:#9FB0C4">/mês</span></span>
+        <ul class="clean" style="gap:8px">
+          <li>Tudo do plano anterior</li>
+          <li>4 pautas produzidas por mês</li>
+          <li>Distribuição no site e nas redes</li>
+        </ul>
+      </div>
+      <div class="card price">
+        <h3>Motor completo</h3>
+        <span class="v" style="color:#fff">R$ 1.490<span style="font-size:1rem;color:#9FB0C4">/mês</span></span>
+        <ul class="clean" style="gap:8px">
+          <li>Tudo dos anteriores</li>
+          <li>Anúncio local com raio de 3 km</li>
+          <li>Captação ativa de avaliações</li>
+          <li>Otimização mensal da ficha</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card" style="margin-top:22px;border-color:var(--ink3)">
+      <p><strong style="color:#fff">Setup inicial da ficha</strong> — categoria, serviços, fotos e perguntas: R$ 490. Ou de brinde no fechamento da landing page, como gatilho de reciprocidade.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CUIDADOS -->
+<section id="cuidados" class="white">
+  <div class="wrap">
+    <div class="head">
+      <p class="eyebrow">Parte 11</p>
+      <h2>Três cuidados antes de executar</h2>
+    </div>
+    <div class="grid" style="gap:16px">
+      <div class="warn">
+        <span class="i">1</span>
+        <div><h4>Nutrição</h4><p>Antes de cadastrar "Nutricionista" como categoria ou produzir conteúdo de plano alimentar, confirme quem é o profissional com registro no CRN. Categoria indevida pode gerar suspensão da ficha, além do risco junto ao conselho.</p></div>
+      </div>
+      <div class="warn">
+        <span class="i">2</span>
+        <div><h4>Antes e depois</h4><p>Precisa de autorização escrita de uso de imagem, e o conselho de educação física tem regras sobre esse tipo de divulgação. Vale checar as normas vigentes do CONFEF antes de transformar isso em pilar de conteúdo.</p></div>
+      </div>
+      <div class="warn">
+        <span class="i">3</span>
+        <div><h4>Nome da ficha</h4><p>Não encha o nome de palavra-chave. É contra as diretrizes do Google e o concorrente denuncia. O ganho vem das categorias e dos serviços, não do nome.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>Plano de Google Meu Negócio e conteúdo · Studio 360° Roberto Costa · Agosto de 2026</p>
+    <p style="margin-top:6px">Preparado por [Seu nome] · [seu contato]</p>
+  </div>
+</footer>
+
+<script>
+const list = document.getElementById("checklist");
+const prog = document.getElementById("progress");
+const items = Array.from(list.querySelectorAll("li"));
+
+function update(){
+  const done = items.filter(li => li.classList.contains("done")).length;
+  prog.textContent = done + " de " + items.length + " concluídos";
+  prog.style.color = done === items.length ? "#047857" : "";
+}
+items.forEach(li => {
+  li.setAttribute("role", "button");
+  li.setAttribute("tabindex", "0");
+  const toggle = () => { li.classList.toggle("done"); update(); };
+  li.addEventListener("click", toggle);
+  li.addEventListener("keydown", e => {
+    if (e.key === "Enter" || e.key === " ") { e.preventDefault(); toggle(); }
+  });
+});
+update();
+</script>
+</body>
+</html>
