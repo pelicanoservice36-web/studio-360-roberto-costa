@@ -68,24 +68,63 @@ alter table public.historico_treino enable row level security;
 alter table public.pagamentos enable row level security;
 alter table public.frequencia enable row level security;
 
--- RLS Policies (v1: all authenticated users can read/write all data)
-create policy "profiles_authenticated_read" on public.profiles
-  for select using (auth.role() = 'authenticated');
+-- RLS Policies (v1: permissive for MVP testing with anon key)
+create policy "profiles_select_all" on public.profiles
+  for select using (true);
 
-create policy "profiles_user_update" on public.profiles
-  for update using (auth.uid() = id);
+create policy "profiles_insert_all" on public.profiles
+  for insert with check (true);
 
-create policy "alunos_authenticated_all" on public.alunos
-  for all using (auth.role() = 'authenticated') with check (auth.role() = 'authenticated');
+create policy "profiles_update_all" on public.profiles
+  for update using (true) with check (true);
 
-create policy "historico_treino_authenticated_all" on public.historico_treino
-  for all using (auth.role() = 'authenticated') with check (auth.role() = 'authenticated');
+create policy "alunos_select_all" on public.alunos
+  for select using (true);
 
-create policy "pagamentos_authenticated_all" on public.pagamentos
-  for all using (auth.role() = 'authenticated') with check (auth.role() = 'authenticated');
+create policy "alunos_insert_all" on public.alunos
+  for insert with check (true);
 
-create policy "frequencia_authenticated_all" on public.frequencia
-  for all using (auth.role() = 'authenticated') with check (auth.role() = 'authenticated');
+create policy "alunos_update_all" on public.alunos
+  for update using (true) with check (true);
+
+create policy "alunos_delete_all" on public.alunos
+  for delete using (true);
+
+create policy "historico_treino_select_all" on public.historico_treino
+  for select using (true);
+
+create policy "historico_treino_insert_all" on public.historico_treino
+  for insert with check (true);
+
+create policy "historico_treino_update_all" on public.historico_treino
+  for update using (true) with check (true);
+
+create policy "historico_treino_delete_all" on public.historico_treino
+  for delete using (true);
+
+create policy "pagamentos_select_all" on public.pagamentos
+  for select using (true);
+
+create policy "pagamentos_insert_all" on public.pagamentos
+  for insert with check (true);
+
+create policy "pagamentos_update_all" on public.pagamentos
+  for update using (true) with check (true);
+
+create policy "pagamentos_delete_all" on public.pagamentos
+  for delete using (true);
+
+create policy "frequencia_select_all" on public.frequencia
+  for select using (true);
+
+create policy "frequencia_insert_all" on public.frequencia
+  for insert with check (true);
+
+create policy "frequencia_update_all" on public.frequencia
+  for update using (true) with check (true);
+
+create policy "frequencia_delete_all" on public.frequencia
+  for delete using (true);
 
 -- Function to auto-create profile on user signup
 create or replace function public.handle_new_user()
