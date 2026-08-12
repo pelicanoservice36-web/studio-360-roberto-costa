@@ -37,7 +37,7 @@ export function usePagamentos(alunoId?: string) {
         .select()
 
       if (err) throw err
-      if (data) setPagamentos([...pagamentos, data[0]])
+      if (data && data.length > 0) setPagamentos([...pagamentos, data[0]])
       return data?.[0]
     } catch (err) {
       throw new Error(err instanceof Error ? err.message : 'Erro ao adicionar pagamento')
@@ -53,7 +53,7 @@ export function usePagamentos(alunoId?: string) {
         .select()
 
       if (err) throw err
-      if (data) setPagamentos(pagamentos.map(p => p.id === id ? data[0] : p))
+      if (data && data.length > 0) setPagamentos(pagamentos.map(p => p.id === id ? data[0] : p))
       return data?.[0]
     } catch (err) {
       throw new Error(err instanceof Error ? err.message : 'Erro ao atualizar pagamento')

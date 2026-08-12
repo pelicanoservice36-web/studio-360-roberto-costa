@@ -38,7 +38,7 @@ export function useAlunos() {
         .select()
 
       if (err) throw err
-      if (data) setAlunos([data[0], ...alunos])
+      if (data && data.length > 0) setAlunos([data[0], ...alunos])
       return data?.[0]
     } catch (err) {
       throw new Error(err instanceof Error ? err.message : 'Erro ao criar aluno')
@@ -54,7 +54,7 @@ export function useAlunos() {
         .select()
 
       if (err) throw err
-      if (data) {
+      if (data && data.length > 0) {
         setAlunos(alunos.map(a => a.id === id ? data[0] : a))
       }
       return data?.[0]

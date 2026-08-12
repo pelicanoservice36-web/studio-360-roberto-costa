@@ -37,7 +37,7 @@ export function useHistoricoTreino(alunoId?: string) {
         .select()
 
       if (err) throw err
-      if (data) setHistorico([data[0], ...historico])
+      if (data && data.length > 0) setHistorico([data[0], ...historico])
       return data?.[0]
     } catch (err) {
       throw new Error(err instanceof Error ? err.message : 'Erro ao adicionar sessão')
@@ -53,7 +53,7 @@ export function useHistoricoTreino(alunoId?: string) {
         .select()
 
       if (err) throw err
-      if (data) setHistorico(historico.map(s => s.id === id ? data[0] : s))
+      if (data && data.length > 0) setHistorico(historico.map(s => s.id === id ? data[0] : s))
       return data?.[0]
     } catch (err) {
       throw new Error(err instanceof Error ? err.message : 'Erro ao atualizar sessão')

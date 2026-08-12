@@ -37,7 +37,7 @@ export function useFrequencia(alunoId?: string) {
         .select()
 
       if (err) throw err
-      if (data) setFrequencia([data[0], ...frequencia])
+      if (data && data.length > 0) setFrequencia([data[0], ...frequencia])
       return data?.[0]
     } catch (err) {
       throw new Error(err instanceof Error ? err.message : 'Erro ao adicionar check-in')

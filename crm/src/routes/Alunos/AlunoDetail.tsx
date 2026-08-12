@@ -29,7 +29,12 @@ export default function AlunoDetail() {
   const handleAddSessao = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     const form = e.currentTarget
-    const observacoes = (form.elements.namedItem('observacoes') as HTMLInputElement).value
+    const observacoesEl = form.querySelector('textarea[name="observacoes"]') as HTMLTextAreaElement | null
+    if (!observacoesEl) {
+      setErrors({ sessao: 'Campo observações não encontrado' })
+      return
+    }
+    const observacoes = observacoesEl.value
     try {
       await addSessao({
         aluno_id: aluno.id,
@@ -46,8 +51,18 @@ export default function AlunoDetail() {
   const handleAddPagamento = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     const form = e.currentTarget
-    const valor = parseFloat((form.elements.namedItem('valor') as HTMLInputElement).value)
-    const data_vencimento = (form.elements.namedItem('data_vencimento') as HTMLInputElement).value
+    const valorEl = form.querySelector('input[name="valor"]') as HTMLInputElement | null
+    const dataEl = form.querySelector('input[name="data_vencimento"]') as HTMLInputElement | null
+    if (!valorEl || !dataEl) {
+      setErrors({ pagamento: 'Campos obrigatórios não encontrados' })
+      return
+    }
+    const valor = parseFloat(valorEl.value)
+    if (isNaN(valor) || valor <= 0) {
+      setErrors({ pagamento: 'Valor inválido' })
+      return
+    }
+    const data_vencimento = dataEl.value
     try {
       await addPagamento({
         aluno_id: aluno.id,
@@ -66,10 +81,14 @@ export default function AlunoDetail() {
   const handleCheckin = async () => {
     try {
       const now = new Date()
+      const hours = String(now.getHours()).padStart(2, '0')
+      const minutes = String(now.getMinutes()).padStart(2, '0')
+      const seconds = String(now.getSeconds()).padStart(2, '0')
+      const hora_checkin = `${hours}:${minutes}:${seconds}`
       await addCheckin({
         aluno_id: aluno.id,
         data_checkin: now.toISOString().split('T')[0],
-        hora_checkin: now.toTimeString().split(' ')[0],
+        hora_checkin,
       })
     } catch (err) {
       setErrors({ checkin: err instanceof Error ? err.message : 'Erro ao fazer check-in' })

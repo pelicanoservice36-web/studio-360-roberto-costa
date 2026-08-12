@@ -28,18 +28,25 @@ export default function AlunoForm() {
   }, [id, alunos])
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    const { name, value, type } = e.target as HTMLInputElement
+    const { name, value } = e.target
+    const target = e.target as any
+    const isCheckbox = target.type === 'checkbox'
     setForm({
       ...form,
-      [name]: type === 'checkbox' ? (e.target as HTMLInputElement).checked : value,
+      [name]: isCheckbox ? target.checked : value,
     })
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setError(null)
-    setLoading(true)
 
+    if (!form.nome || !form.data_inicio) {
+      setError('Nome e Data de Início são obrigatórios')
+      return
+    }
+
+    setLoading(true)
     try {
       if (id) {
         await updateAluno(id, form)
