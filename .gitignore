@@ -6,3 +6,4 @@ documentos/
 node_modules/
 .env
 .env.local
+.worktrees/
