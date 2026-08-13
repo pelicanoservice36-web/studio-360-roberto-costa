@@ -63,12 +63,12 @@ export default function AlunoForm() {
 
   return (
     <div style={styles.container}>
-      <h1>{id ? 'Editar Aluno' : 'Novo Aluno'}</h1>
+      <h1 style={{ marginBottom: '1.5rem' }}>{id ? 'Editar Aluno' : 'Novo Aluno'}</h1>
 
       {error && <div style={styles.alert}>{error}</div>}
 
-      <form onSubmit={handleSubmit} style={styles.form}>
-        <div style={styles.grid}>
+      <form onSubmit={handleSubmit} style={styles.form} className="card">
+        <div style={styles.grid} className="form-grid-2">
           <div>
             <label style={styles.label}>Nome *</label>
             <input
@@ -179,11 +179,11 @@ const styles = {
     maxWidth: '600px',
   } as React.CSSProperties,
   alert: {
-    background: 'rgba(239, 68, 68, 0.1)',
+    background: 'rgba(248, 113, 113, 0.12)',
     border: '1px solid var(--danger)',
     color: 'var(--danger)',
     padding: '1rem',
-    borderRadius: '4px',
+    borderRadius: '8px',
     marginBottom: '1.5rem',
   } as React.CSSProperties,
   form: {
@@ -199,43 +199,48 @@ const styles = {
   label: {
     display: 'block',
     marginBottom: '0.5rem',
-    fontWeight: '500',
+    fontWeight: '600',
+    fontSize: '0.9rem',
     color: 'var(--text)',
   } as React.CSSProperties,
   input: {
     width: '100%',
     padding: '0.75rem',
     border: '1px solid var(--border)',
-    borderRadius: '4px',
+    borderRadius: '8px',
     fontSize: '1rem',
     fontFamily: 'inherit',
   } as React.CSSProperties,
   checkbox: {
     display: 'flex',
     alignItems: 'center',
+    gap: '0.5rem',
     cursor: 'pointer',
+    fontWeight: 500,
   } as React.CSSProperties,
   buttonGroup: {
     display: 'flex',
     gap: '1rem',
   } as React.CSSProperties,
   submitBtn: {
-    padding: '0.75rem 1.5rem',
+    padding: '0.75rem 1.75rem',
     background: 'var(--primary)',
     color: 'white',
     border: 'none',
-    borderRadius: '4px',
+    borderRadius: '999px',
     fontSize: '1rem',
-    fontWeight: '600',
+    fontWeight: '700',
     cursor: 'pointer',
+    boxShadow: 'var(--shadow-sm)',
   } as React.CSSProperties,
   cancelBtn: {
-    padding: '0.75rem 1.5rem',
-    background: 'var(--bg-secondary)',
+    padding: '0.75rem 1.75rem',
+    background: 'transparent',
     color: 'var(--text)',
     border: '1px solid var(--border)',
-    borderRadius: '4px',
+    borderRadius: '999px',
     fontSize: '1rem',
+    fontWeight: 600,
     cursor: 'pointer',
   } as React.CSSProperties,
 }

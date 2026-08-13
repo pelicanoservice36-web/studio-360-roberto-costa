@@ -191,7 +191,7 @@ export default function AlunoDetail() {
           {pagamentos.length === 0 ? (
             <p style={{ color: 'var(--text-muted)' }}>Nenhum pagamento registrado.</p>
           ) : (
-            <table style={styles.table}>
+            <table style={styles.table} className="table-plain">
               <thead>
                 <tr>
                   <th>Data Vencimento</th>
@@ -238,7 +238,7 @@ export default function AlunoDetail() {
           {frequencia.length === 0 ? (
             <p style={{ color: 'var(--text-muted)' }}>Nenhum check-in registrado.</p>
           ) : (
-            <table style={styles.table}>
+            <table style={styles.table} className="table-plain">
               <thead>
                 <tr>
                   <th>Data</th>
@@ -266,62 +266,77 @@ const styles = {
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'flex-start',
-    marginBottom: '2rem',
-    paddingBottom: '1rem',
+    flexWrap: 'wrap',
+    gap: '1rem',
+    marginBottom: '1.5rem',
+    paddingBottom: '1.25rem',
     borderBottom: '1px solid var(--border)',
   } as React.CSSProperties,
   backLink: {
     color: 'var(--primary)',
     textDecoration: 'none',
-    fontSize: '0.9rem',
+    fontSize: '0.85rem',
+    fontWeight: 600,
   } as React.CSSProperties,
   editBtn: {
     background: 'var(--primary)',
     color: 'white',
-    padding: '0.75rem 1.5rem',
-    borderRadius: '4px',
+    padding: '0.7rem 1.4rem',
+    borderRadius: '8px',
     textDecoration: 'none',
     fontWeight: '600',
+    boxShadow: 'var(--shadow-sm)',
   } as React.CSSProperties,
   info: {
     display: 'grid',
-    gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+    gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))',
     gap: '1rem',
-    marginBottom: '2rem',
-    background: 'var(--bg-secondary)',
-    padding: '1.5rem',
-    borderRadius: '8px',
+    marginBottom: '1.5rem',
+    background: 'var(--bg-card)',
+    border: '1px solid var(--border)',
+    padding: '1.25rem 1.5rem',
+    borderRadius: 'var(--radius-lg)',
+    boxShadow: 'var(--shadow-sm)',
   } as React.CSSProperties,
   tabs: {
     display: 'flex',
-    gap: '1rem',
-    borderBottom: '1px solid var(--border)',
+    gap: '0.5rem',
     marginBottom: '1.5rem',
+    background: 'var(--bg-secondary)',
+    padding: '0.35rem',
+    borderRadius: '999px',
+    width: 'fit-content',
+    maxWidth: '100%',
+    overflowX: 'auto',
   } as React.CSSProperties,
   tab: {
     background: 'transparent',
     border: 'none',
-    padding: '0.75rem 1rem',
+    padding: '0.55rem 1.1rem',
     cursor: 'pointer',
-    borderBottom: '2px solid transparent',
+    borderRadius: '999px',
     color: 'var(--text-muted)',
-    fontWeight: '500',
+    fontWeight: '600',
+    fontSize: '0.9rem',
+    whiteSpace: 'nowrap',
   } as React.CSSProperties,
   tabActive: {
-    color: 'var(--primary)',
-    borderBottomColor: 'var(--primary)',
+    color: 'white',
+    background: 'var(--primary)',
   } as React.CSSProperties,
   section: {
-    background: 'var(--bg-secondary)',
+    background: 'var(--bg-card)',
+    border: '1px solid var(--border)',
     padding: '1.5rem',
-    borderRadius: '8px',
+    borderRadius: 'var(--radius-lg)',
+    boxShadow: 'var(--shadow-sm)',
   } as React.CSSProperties,
   alert: {
-    background: 'rgba(239, 68, 68, 0.1)',
+    background: 'rgba(248, 113, 113, 0.12)',
     border: '1px solid var(--danger)',
     color: 'var(--danger)',
     padding: '0.75rem',
-    borderRadius: '4px',
+    borderRadius: '8px',
     marginBottom: '1rem',
   } as React.CSSProperties,
   formSmall: {
@@ -339,7 +354,7 @@ const styles = {
   input: {
     padding: '0.75rem',
     border: '1px solid var(--border)',
-    borderRadius: '4px',
+    borderRadius: '8px',
     fontSize: '1rem',
     fontFamily: 'inherit',
   } as React.CSSProperties,
@@ -348,23 +363,24 @@ const styles = {
     background: 'var(--primary)',
     color: 'white',
     border: 'none',
-    borderRadius: '4px',
+    borderRadius: '8px',
     cursor: 'pointer',
     fontWeight: '600',
   } as React.CSSProperties,
   linkBtn: {
-    padding: '0.4rem 0.75rem',
-    fontSize: '0.85rem',
+    padding: '0.4rem 0.8rem',
+    fontSize: '0.82rem',
+    fontWeight: '600',
     background: 'var(--success)',
     color: 'white',
     border: 'none',
-    borderRadius: '4px',
+    borderRadius: '999px',
     cursor: 'pointer',
   } as React.CSSProperties,
   item: {
-    background: 'var(--bg)',
-    padding: '1rem',
-    borderRadius: '4px',
+    background: 'var(--bg-secondary)',
+    padding: '1rem 1.1rem',
+    borderRadius: '10px',
     marginBottom: '0.75rem',
     borderLeft: '3px solid var(--primary)',
   } as React.CSSProperties,
@@ -373,17 +389,19 @@ const styles = {
     borderCollapse: 'collapse' as const,
   } as React.CSSProperties,
   badgeSuccess: {
-    background: 'rgba(16, 185, 129, 0.1)',
+    background: 'rgba(16, 185, 129, 0.14)',
     color: 'var(--success)',
-    padding: '0.25rem 0.75rem',
-    borderRadius: '4px',
-    fontSize: '0.85rem',
+    padding: '0.3rem 0.8rem',
+    borderRadius: '999px',
+    fontSize: '0.8rem',
+    fontWeight: 700,
   } as React.CSSProperties,
   badgeWarning: {
-    background: 'rgba(245, 158, 11, 0.1)',
+    background: 'rgba(245, 158, 11, 0.14)',
     color: 'var(--warning)',
-    padding: '0.25rem 0.75rem',
-    borderRadius: '4px',
-    fontSize: '0.85rem',
+    padding: '0.3rem 0.8rem',
+    borderRadius: '999px',
+    fontSize: '0.8rem',
+    fontWeight: 700,
   } as React.CSSProperties,
 }
