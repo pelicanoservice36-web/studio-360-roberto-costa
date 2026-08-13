@@ -1,7 +1,8 @@
 {
   "$schema": "https://json.schemastore.org/wrangler.json",
   "name": "studio-360-roberto-costa",
-  "site": {
-    "bucket": "site"
+  "compatibility_date": "2026-08-12",
+  "assets": {
+    "directory": "site"
   }
 }
