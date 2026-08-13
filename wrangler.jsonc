@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json.schemastore.org/wrangler.json",
+  "name": "studio-360-roberto-costa",
+  "type": "javascript",
+  "main": "src/index.ts",
+  "site": {
+    "bucket": "site"
+  },
+  "build": {
+    "command": "",
+    "cwd": null,
+    "watch_paths": null
+  },
+  "env": {},
+  "vars": {},
+  "triggers": {
+    "crons": []
+  },
+  "observability": {
+    "enabled": false
+  }
+}
