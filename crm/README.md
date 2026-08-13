@@ -56,17 +56,49 @@ npm run build
 
 Isso gera arquivos otimizados em `dist/`.
 
-## Deploy no Cloudflare Pages
+## Deploy no Cloudflare (Workers + Static Assets)
 
-1. Conecte o repositório GitHub ao Cloudflare Pages
-2. Configure:
-   - **Root directory**: `crm`
-   - **Build command**: `npm run build`
-   - **Output directory**: `dist`
-3. Defina as variáveis de ambiente:
-   - `VITE_SUPABASE_URL`
-   - `VITE_SUPABASE_ANON_KEY`
-4. Deploy automático a cada commit
+O CRM roda como um **Cloudflare Worker de assets estáticos**, separado do projeto `site/` (que tem seu próprio `wrangler.jsonc` na raiz do repo). Cada um é um projeto Cloudflare distinto, ambos conectados ao mesmo repositório GitHub.
+
+- URL de produção: `https://studio-360-crm.pelicanoservice36.workers.dev`
+
+### Configuração do projeto (dashboard Cloudflare → Workers & Pages)
+
+No projeto `studio-360-crm` → **Settings** → **Build configuration**:
+
+| Campo | Valor |
+|---|---|
+| Root directory | `crm` |
+| Build command | `npm install && npm run build` |
+| Deploy command | `npx wrangler deploy` |
+| Production branch | `main` |
+
+### `crm/wrangler.jsonc`
+
+```jsonc
+{
+  "name": "studio-360-crm",
+  "compatibility_date": "2026-08-12",
+  "assets": {
+    "directory": "dist"
+  }
+}
+```
+
+Usa o formato `assets` (não o `site` legado de Workers Sites, que exige um worker script de entry-point). `assets.directory` aponta para o output do Vite (`dist/`).
+
+### Variáveis de ambiente
+
+Defina em **Settings** → **Variables and secrets** do projeto Cloudflare (não nos GitHub Secrets — o build roda direto na infraestrutura Cloudflare via Git integration, não via GitHub Actions):
+
+- `VITE_SUPABASE_URL`
+- `VITE_SUPABASE_ANON_KEY`
+
+**Importante:** alterar essas variáveis só afeta builds futuros. Depois de adicioná-las/editá-las, é preciso disparar um novo deployment (push ou "Retry build") para o Vite embutir os valores no bundle.
+
+### Deploy automático
+
+Qualquer push em `main` que toque em `crm/**` dispara um novo build+deploy automaticamente (Git integration do Cloudflare).
 
 ## Estrutura do Projeto
 
@@ -121,7 +153,8 @@ crm/
 
 ## Notas de Desenvolvimento
 
-- **RLS (Row Level Security)**: Atualmente, qualquer usuário autenticado pode ler/escrever todos os dados. Em futuros updates, será implementado escopo por trainer.
+- **RLS (Row Level Security)**: Atualmente as políticas são permissivas (`USING (true)`) em todas as tabelas, liberando leitura/escrita mesmo via `anon key`. Isso foi necessário porque o app usa a anon key do Supabase (sem exigir `auth.role() = 'authenticated'`). É adequado para o MVP com poucos usuários confiáveis, mas **não é seguro para produção multi-tenant** — antes de abrir para mais professores, apertar as policies por `trainer_id`/`auth.uid()`.
+- Todas as tabelas (`alunos`, `historico_treino`, `pagamentos`, `frequencia`) usam `id uuid primary key default gen_random_uuid()`. Não usar `bigint`/`serial` — isso já causou bug de "aluno não encontrado" (mismatch entre UUID da URL e ID numérico do banco) e exigiu recriar as tabelas.
 - **Sem offline sync**: O CRM requer conexão com internet para funcionar.
 - **Notificações**: V1 não inclui notificações automáticas de pagamentos atrasados.
 - **Relatórios**: V1 não inclui relatórios avançados; use o Supabase Dashboard para análises.

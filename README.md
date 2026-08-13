@@ -11,11 +11,19 @@ Site institucional estático (HTML/CSS puro, sem build) para o Studio 360 do Rob
 
 ## Deploy
 
-Publicado no **Cloudflare Pages**: https://studio-360-roberto-costa.pelicanoservice36.workers.dev/
+Publicado como **Cloudflare Worker de assets estáticos**: https://studio-360-roberto-costa.pelicanoservice36.workers.dev/
 
-O site é acionado automaticamente a cada push no branch `main` do repositório GitHub. Não é necessário ação manual para redeploy.
+Configuração em `wrangler.jsonc` na raiz (`assets.directory: "site"`). O deploy é acionado automaticamente a cada push no branch `main` do repositório GitHub (Git integration do Cloudflare, projeto `studio-360-roberto-costa` em Workers & Pages). Não é necessário ação manual para redeploy.
 
 **Repositório GitHub:** https://github.com/pelicanoservice36-web/studio-360-roberto-costa
+
+### CRM de alunos
+
+Este repositório também hospeda o `crm/`, um app React/Vite + Supabase separado do site institucional — ver [crm/README.md](crm/README.md) para detalhes de setup e deploy. É um projeto Cloudflare distinto (`studio-360-crm`), com root directory `crm` e seu próprio `crm/wrangler.jsonc`, publicado em https://studio-360-crm.pelicanoservice36.workers.dev/.
+
+### GitHub Actions
+
+`.github/workflows/build-and-test.yml` e `.github/workflows/deploy.yml` rodam build/deploy do CRM via GitHub Actions como validação adicional (paralela ao deploy nativo do Cloudflare Git integration). Requerem os secrets `VITE_SUPABASE_URL`, `VITE_SUPABASE_ANON_KEY`, `CLOUDFLARE_API_TOKEN` e `CLOUDFLARE_ACCOUNT_ID` configurados em Settings → Secrets and variables → Actions.
 
 ## Pendências conhecidas
 
