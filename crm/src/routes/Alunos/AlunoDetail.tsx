@@ -5,8 +5,24 @@ import { useHistoricoTreino } from '../../hooks/useHistoricoTreino'
 import { usePagamentos } from '../../hooks/usePagamentos'
 import { useFrequencia } from '../../hooks/useFrequencia'
 import { Aluno } from '../../types/database'
+import TrainingCalendar from '../../components/TrainingCalendar'
 
 type Tab = 'historico' | 'pagamentos' | 'frequencia'
+
+const todayKey = () => new Date().toISOString().split('T')[0]
+
+const formatDateLabel = (dateKey: string) =>
+  new Date(dateKey + 'T00:00:00').toLocaleDateString('pt-BR', {
+    weekday: 'long',
+    day: '2-digit',
+    month: 'long',
+  })
+
+const formatDateShort = (dateKey: string) =>
+  new Date(dateKey + 'T00:00:00').toLocaleDateString('pt-BR', {
+    day: '2-digit',
+    month: '2-digit',
+  })
 
 export default function AlunoDetail() {
   const { id } = useParams()
@@ -18,6 +34,7 @@ export default function AlunoDetail() {
   const [aluno, setAluno] = useState<Aluno | null>(null)
   const [tab, setTab] = useState<Tab>('historico')
   const [errors, setErrors] = useState<Record<string, string>>({})
+  const [selectedDate, setSelectedDate] = useState<string>(todayKey())
 
   useEffect(() => {
     const found = alunos.find(a => a.id === id)
@@ -25,6 +42,8 @@ export default function AlunoDetail() {
   }, [id, alunos])
 
   if (!aluno) return <p>Aluno não encontrado.</p>
+
+  const sessoesDoDia = historico.filter(s => s.data_sessao === selectedDate)
 
   const handleAddSessao = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -39,7 +58,7 @@ export default function AlunoDetail() {
       await addSessao({
         aluno_id: aluno.id,
         trainer_id: null,
-        data_sessao: new Date().toISOString().split('T')[0],
+        data_sessao: selectedDate,
         observacoes,
       })
       form.reset()
@@ -141,8 +160,20 @@ export default function AlunoDetail() {
 
       {tab === 'historico' && (
         <div style={styles.section}>
-          <h2>Histórico de Treino</h2>
+          <h2 style={{ marginBottom: '1rem' }}>Calendário de Treino</h2>
+
+          <TrainingCalendar
+            markedDates={historico.map(s => s.data_sessao)}
+            selectedDate={selectedDate}
+            onSelectDate={setSelectedDate}
+          />
+
           {errors.sessao && <div style={styles.alert}>{errors.sessao}</div>}
+
+          <p style={styles.dateLabel}>
+            {formatDateLabel(selectedDate)}
+          </p>
+
           <form onSubmit={handleAddSessao} style={styles.formSmall}>
             <textarea
               name="observacoes"
@@ -150,16 +181,18 @@ export default function AlunoDetail() {
               style={styles.input}
               rows={3}
             />
-            <button type="submit" style={styles.btn}>Adicionar Sessão</button>
+            <button type="submit" style={styles.btn}>
+              Adicionar Sessão em {formatDateShort(selectedDate)}
+            </button>
           </form>
-          {historico.length === 0 ? (
-            <p style={{ color: 'var(--text-muted)' }}>Nenhuma sessão registrada.</p>
+
+          {sessoesDoDia.length === 0 ? (
+            <p style={{ color: 'var(--text-muted)' }}>Nenhuma sessão registrada para este dia.</p>
           ) : (
             <div>
-              {historico.map(s => (
+              {sessoesDoDia.map(s => (
                 <div key={s.id} style={styles.item}>
-                  <strong>{s.data_sessao}</strong>
-                  <p>{s.observacoes || '-'}</p>
+                  <p style={{ margin: 0 }}>{s.observacoes || '-'}</p>
                 </div>
               ))}
             </div>
@@ -338,6 +371,14 @@ const styles = {
     padding: '0.75rem',
     borderRadius: '8px',
     marginBottom: '1rem',
+  } as React.CSSProperties,
+  dateLabel: {
+    fontFamily: 'var(--display)',
+    textTransform: 'capitalize',
+    fontWeight: 600,
+    color: 'var(--text-muted)',
+    marginBottom: '0.75rem',
+    fontSize: '0.95rem',
   } as React.CSSProperties,
   formSmall: {
     display: 'flex',
