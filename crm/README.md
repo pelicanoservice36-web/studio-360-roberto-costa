@@ -153,7 +153,7 @@ crm/
 
 ## Notas de Desenvolvimento
 
-- **RLS (Row Level Security)**: Atualmente as políticas são permissivas (`USING (true)`) em todas as tabelas, liberando leitura/escrita mesmo via `anon key`. Isso foi necessário porque o app usa a anon key do Supabase (sem exigir `auth.role() = 'authenticated'`). É adequado para o MVP com poucos usuários confiáveis, mas **não é seguro para produção multi-tenant** — antes de abrir para mais professores, apertar as policies por `trainer_id`/`auth.uid()`.
+- **RLS (Row Level Security)**: as políticas (migration `0002_tighten_rls.sql`) exigem `auth.role() = 'authenticated'` em todas as operações — só quem faz login via Supabase Auth (`supabase.auth.signInWithPassword`, usado em `Login.tsx`) consegue ler/escrever. Isso fecha o acesso direto pela anon key (pública, visível no bundle JS) sem exigir mudança no app, já que o CRM sempre opera com sessão logada. **Ainda não há escopo por professor** — qualquer usuário autenticado vê todos os alunos; apertar por `trainer_id`/`auth.uid()` fica para quando houver múltiplos professores.
 - Todas as tabelas (`alunos`, `historico_treino`, `pagamentos`, `frequencia`) usam `id uuid primary key default gen_random_uuid()`. Não usar `bigint`/`serial` — isso já causou bug de "aluno não encontrado" (mismatch entre UUID da URL e ID numérico do banco) e exigiu recriar as tabelas.
 - **Sem offline sync**: O CRM requer conexão com internet para funcionar.
 - **Notificações**: V1 não inclui notificações automáticas de pagamentos atrasados.

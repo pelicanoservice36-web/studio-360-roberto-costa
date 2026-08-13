@@ -68,7 +68,7 @@ alter table public.historico_treino enable row level security;
 alter table public.pagamentos enable row level security;
 alter table public.frequencia enable row level security;
 
--- RLS Policies (v1: permissive for MVP testing with anon key)
+-- RLS Policies (v1 original, superseded by 0002_tighten_rls.sql)
 create policy "profiles_select_all" on public.profiles
   for select using (true);
 
