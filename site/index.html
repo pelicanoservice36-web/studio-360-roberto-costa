@@ -122,12 +122,22 @@ p{margin:0}
 /* ============================================================
    HEADER
    ============================================================ */
+/* O blur fica num pseudo-elemento, não na .header: "backdrop-filter" na
+   própria .header faria dela o containing block de qualquer descendente
+   position:fixed (como o menu mobile), prendendo o menu dentro da altura
+   do header em vez de cobrir a tela toda. */
 .header{
-  position:sticky; top:0; z-index:60; background:rgba(11,18,32,.82);
-  backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px);
-  border-bottom:1px solid transparent; transition:border-color var(--t), background var(--t);
+  position:sticky; top:0; z-index:60;
+  border-bottom:1px solid transparent; transition:border-color var(--t);
 }
-.header.is-stuck{border-bottom-color:var(--line-inv); background:rgba(11,18,32,.96)}
+.header::before{
+  content:""; position:absolute; inset:0; z-index:-1;
+  background:rgba(11,18,32,.82);
+  backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px);
+  transition:background var(--t);
+}
+.header.is-stuck{border-bottom-color:var(--line-inv)}
+.header.is-stuck::before{background:rgba(11,18,32,.96)}
 .nav{display:flex; align-items:center; gap:var(--sp-3); min-height:64px}
 .brand{display:flex; align-items:center; gap:10px; color:var(--fg-inv); margin-right:auto}
 .brand__mark{
@@ -160,7 +170,7 @@ p{margin:0}
 
 @media (max-width:960px){
   .nav__links{
-    position:fixed; inset:64px 0 0 0; flex-direction:column; align-items:stretch; gap:0;
+    position:fixed; inset:var(--header-h,64px) 0 0 0; z-index:80; flex-direction:column; align-items:stretch; gap:0;
     background:var(--ink); padding:8px 20px calc(28px + env(safe-area-inset-bottom));
     overflow-y:auto; -webkit-overflow-scrolling:touch; overscroll-behavior:contain;
     transform:translateY(-8px); opacity:0; pointer-events:none; transition:opacity var(--t), transform var(--t);
@@ -950,8 +960,18 @@ document.querySelectorAll("[data-wa]").forEach(function (el) {
 /* Menu mobile */
 const toggle = document.getElementById("navToggle");
 const menu = document.getElementById("menu");
+const headerEl = document.getElementById("header");
+
+/* Altura do header varia (fonte maior, zoom, notch) — mede de verdade
+   em vez de usar um valor fixo, senão o topo do menu fica cortado */
+function updateHeaderHeight() {
+  document.documentElement.style.setProperty("--header-h", headerEl.offsetHeight + "px");
+}
+updateHeaderHeight();
+window.addEventListener("resize", updateHeaderHeight);
 
 function setMenu(open) {
+  if (open) updateHeaderHeight();
   menu.classList.toggle("is-open", open);
   document.body.classList.toggle("is-locked", open);
   toggle.setAttribute("aria-expanded", String(open));
