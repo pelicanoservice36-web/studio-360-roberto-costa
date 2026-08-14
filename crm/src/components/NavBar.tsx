@@ -16,6 +16,8 @@ export default function NavBar() {
   const isActive = (path: string) =>
     path === '/' ? location.pathname === '/' : location.pathname.startsWith(path)
 
+  const initials = (user?.email?.slice(0, 2) || '??').toUpperCase()
+
   return (
     <>
       {/* Top bar: brand + user, visible on all sizes */}
@@ -32,6 +34,12 @@ export default function NavBar() {
           </nav>
 
           <div style={styles.userDesktop} className="navbar-user-desktop">
+            <span
+              className="avatar-circle"
+              style={{ width: '2.2rem', height: '2.2rem', fontSize: '0.75rem', background: 'rgba(255,255,255,0.14)', color: 'white' }}
+            >
+              {initials}
+            </span>
             <span style={styles.userEmail}>{user?.email}</span>
             <button onClick={handleLogout} style={styles.logoutBtn}>
               Sair
